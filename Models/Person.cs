@@ -4,26 +4,26 @@ namespace People_MVC_assignment_Lexicon.Models
 {
     public class Person
     {
-        public int id { get; set; }
-        public string? firstName { get; set; }
-        public string? lastName { get; set; }
-        public int age { get; set; }
-        public string? city { get; set; }
-        public long phone { get; set; }
+        public int Id { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public int Age { get; set; }
+        public string? City { get; set; }
+        public long Phone { get; set; }
 
         public Person NewPerson(string firstName, string lastName, string cityOfBirth, int age)
         {
             Person person = new Person();
-            person.firstName = firstName;
-            person.lastName = lastName;
-            person.city = cityOfBirth;
-            person.age = age;
-            InMemoryPeopleRepo.personList.Add(person);
+            person.FirstName = firstName;
+            person.LastName = lastName;
+            person.City = cityOfBirth;
+            person.Age = age;
+            InMemoryPersonRepo.personList.Add(person);
             return person;
         }
         public Person NewPerson(Person person)
         {
-            InMemoryPeopleRepo.personList.Add(person);
+            InMemoryPersonRepo.personList.Add(person);
             return person;
         }
     }

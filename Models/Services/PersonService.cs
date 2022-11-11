@@ -1,6 +1,7 @@
 ﻿using People_MVC_assignment_Lexicon.Models.Repos;
 using People_MVC_assignment_Lexicon.Models.ViewModels;
 using System;
+using System.Xml.Linq;
 
 namespace People_MVC_assignment_Lexicon.Models.Services
 {
@@ -22,8 +23,8 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
             Person person = new Person()
             {
-                firstName = createPerson.firstName,
-                lastName = createPerson.lastName,
+                FirstName = createPerson.firstName,
+                LastName = createPerson.lastName,
             };
             person = _personRepo.Create(person);
             return person;
@@ -33,6 +34,14 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         {
             return _personRepo.GetById(id);
         }
+        public Person FindByName(string name)
+        {
+            return _personRepo.GetByName(name);
+        }
+        public Person FindByCity(string city)
+        {
+            return _personRepo.GetByCity(city);
+        }
         public List<Person> GetAll()
         {
             return _personRepo.GetAll();
@@ -40,13 +49,13 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public bool Edit(int id, CreatePersonViewModel person)
         {
-            foreach (Person p in InMemoryPeopleRepo.personList)
-                if (id == p.id)
+            foreach (Person p in InMemoryPersonRepo.personList)
+                if (id == p.Id)
                 {
-                    p.firstName = person.firstName;
-                    p.city = person.city;
-                    p.age = person.age;
-                    p.lastName = person.lastName;
+                    p.FirstName = person.firstName;
+                    p.City = person.city;
+                    p.Age = person.age;
+                    p.LastName = person.lastName;
                     return true;
                 }
             return false;
@@ -54,23 +63,13 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public bool Remove(int id)
         {
-            foreach (Person p in InMemoryPeopleRepo.personList)
-                if (id == p.id)
+            foreach (Person p in InMemoryPersonRepo.personList)
+                if (id == p.Id)
                 {
-                    InMemoryPeopleRepo.personList.Remove(p);
+                    InMemoryPersonRepo.personList.Remove(p);
                     return true;
                 }
             return false;
-        }
-
-        public Person FindByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Person FindByCity(string city)
-        {
-            throw new NotImplementedException();
         }
     }
 }
