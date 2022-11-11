@@ -1,0 +1,18 @@
+﻿
+<h3>Search</h3>
+<form asp-action="placeholder" asp-controller="placeholder">
+    <input type="text" name="nameQuery" value="" placeholder="Search for a name." />
+    <input type="text" name="cityQuery" value="" placeholder="Search for a city." />
+
+    <input type="submit" />
+    <p>
+        @if (ViewBag.Msg != null)
+        {
+            @ViewBag.Msg
+        }
+        @if (ViewBag.Num != null)
+        {
+            @ViewBag.Num
+        }
+    </p>
+</form>

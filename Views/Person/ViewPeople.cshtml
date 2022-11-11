@@ -1,0 +1,51 @@
+﻿@model List<Person>;
+<h3>Data</h3>
+<table>
+    <tr>
+        <th>
+            <p>ID</p>
+        </th>
+        <th>
+            <p>First Name</p>
+        </th>
+        <th>
+            <p>Last Name</p>
+        </th>
+        <th>
+            <p>City</p>
+        </th>
+        <th>
+            <p>Age</p>
+        </th>
+        <th>
+            <p>
+                Details
+            </p>
+        </th>
+    </tr>
+
+    @foreach (Person person in Model){
+        <tr>
+            <td>
+                @person.firstName
+            </td>
+            <td>
+                @person.lastName
+            </td>
+            <td>
+                @person.age
+            </td>
+            <td>
+                @person.city
+            </td>
+            <td>
+                @person.phone
+            </td>
+        </tr>
+        @*@Html.ActionLink("Details","PersonDetails","Person", new {id = p.id}) @Html.ActionLink("Delete","Delete","Person", new {id = p.id})*@
+    }
+</table>
+<br />
+<button type="button" onclick="">
+    Sort the list.
+</button>  
