@@ -11,7 +11,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
 
         public PersonController()
         {
-            _peopleService = new PersonService(new InMemoryPeopleRepo());
+            _peopleService = new PersonService(new InMemoryPersonRepo());
         }
 
         [HttpGet]
@@ -29,7 +29,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
-            if (p.id == id)
+            if (p.Id == id)
             {
                 return View(p);
             }
@@ -48,19 +48,15 @@ namespace People_MVC_assignment_Lexicon.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                try// STEP1 
+                try
                 {
                     _peopleService.Create(person);
                 }
                 catch (ArgumentException exception)
                 {
-                    // Add our own message
-                    ModelState.AddModelError("error", exception.Message);// Key And value
+                    ModelState.AddModelError("error", exception.Message);
                     return View(person);
                 }
-
-
                 return RedirectToAction(nameof(ViewPeople));
             }
             return View(person);

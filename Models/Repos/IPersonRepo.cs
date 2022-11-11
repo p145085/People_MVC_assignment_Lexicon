@@ -5,6 +5,8 @@
         Person Create(Person person);
         List<Person> GetAll();
         Person GetById(int id);
+        Person GetByName(string name);
+        Person GetByCity(string city);
 
         void Update(Person person);
 
