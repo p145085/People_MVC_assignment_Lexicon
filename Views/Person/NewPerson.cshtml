@@ -12,15 +12,15 @@
 <form asp-action="NewPerson" asp-controller="Person" method="post">
     <div asp-validation-summary="ModelOnly"></div>
     <h4>First name</h4>
-    <input asp-for="firstName" type="text" />
-    <span asp-validation-for="firstName"></span>
+    <input asp-for="FirstName" type="text" />
+    <span asp-validation-for="FirstName"></span>
     <h4>Last name</h4>
-    <input asp-for="lastName" type="text" />    <span asp-validation-for="lastName"></span>
+    <input asp-for="LastName" type="text" />    <span asp-validation-for="LastName"></span>
     <h4>City of birth</h4>
-    <input asp-for="city" type="text" />    <span asp-validation-for="city"></span>
+    <input asp-for="City" type="text" />    <span asp-validation-for="City"></span>
     <h4>Age</h4>
-    <input asp-for="age" type="number" />
-    <span asp-validation-for="age"></span>
+    <input asp-for="Age" type="number" />
+    <span asp-validation-for="Age"></span>
     <button type="submit" value="NewPerson">Submit</button>
 </form>
 <a asp-action="ViewPeople">Back</a>

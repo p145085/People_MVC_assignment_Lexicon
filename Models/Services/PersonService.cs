@@ -14,17 +14,22 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public Person Create(CreatePersonViewModel createPerson)
         {
-            if (string.IsNullOrWhiteSpace(createPerson.firstName) ||
-                string.IsNullOrWhiteSpace(createPerson.lastName) ||
-                string.IsNullOrWhiteSpace(createPerson.fullName))
+            if (string.IsNullOrWhiteSpace(createPerson.FirstName) ||
+                string.IsNullOrWhiteSpace(createPerson.LastName) //||
+                //string.IsNullOrWhiteSpace(createPerson.FullName))
+                )
             { 
                 throw new ArgumentException("No whitespace allowed."); 
             }
 
             Person person = new Person()
             {
-                FirstName = createPerson.firstName,
-                LastName = createPerson.lastName,
+                Id = createPerson.Id,
+                FirstName = createPerson.FirstName,
+                LastName = createPerson.LastName,
+                City = createPerson.City,
+                Age = createPerson.Age,
+                FullName = createPerson.FullName,
             };
             person = _personRepo.Create(person);
             return person;
@@ -52,10 +57,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             foreach (Person p in InMemoryPersonRepo.personList)
                 if (id == p.Id)
                 {
-                    p.FirstName = person.firstName;
-                    p.City = person.city;
-                    p.Age = person.age;
-                    p.LastName = person.lastName;
+                    p.FirstName = person.FirstName;
+                    p.City = person.City;
+                    p.Age = person.Age;
+                    p.LastName = person.LastName;
                     return true;
                 }
             return false;

@@ -12,10 +12,16 @@
             <p>Last Name</p>
         </th>
         <th>
-            <p>City</p>
+            <p>Full Name</p>
         </th>
         <th>
             <p>Age</p>
+        </th>
+        <th>
+            <p>City</p>
+        </th>
+        <th>
+            <p>Phone</p>
         </th>
         <th>
             <p>
@@ -27,10 +33,16 @@
     @foreach (Person person in Model){
         <tr>
             <td>
+                @person.Id
+            </td>
+            <td>
                 @person.FirstName
             </td>
             <td>
                 @person.LastName
+            </td>
+            <td>
+                @person.FullName
             </td>
             <td>
                 @person.Age
