@@ -31,7 +31,10 @@
     </tr>
 
     @foreach (Person person in Model){
-        <tr>
+
+        <partial name="PartialPeople" model="person"></partial>
+
+        @*<tr>
             <td>
                 @person.Id
             </td>
@@ -53,7 +56,7 @@
             <td>
                 @person.Phone
             </td>
-        </tr>
+        </tr>*@
         @*@Html.ActionLink("Details","PersonDetails","Person", new {id = p.id}) @Html.ActionLink("Delete","Delete","Person", new {id = p.id})*@
     }
 </table>

@@ -30,6 +30,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 City = createPerson.City,
                 Age = createPerson.Age,
                 FullName = createPerson.FullName,
+                Phone = createPerson.Phone,
             };
             person = _personRepo.Create(person);
             return person;

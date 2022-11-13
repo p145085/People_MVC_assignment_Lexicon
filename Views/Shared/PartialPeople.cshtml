@@ -1,0 +1,15 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Person
+
+<div class="row">
+    <div class="col-3">@Model.Id</div>
+    <div class="col-3">@Model.FullName</div>
+    <div class="col-3">@Model.Age</div>
+    <div class="col-3">@Model.City</div>
+    <div class="col-3">@Model.Phone</div>
+    <div>@Html.ActionLink("Details","Details","Person", new {id = Model.Id})</div>
+</div>
