@@ -11,19 +11,27 @@
 
 <form asp-action="NewPerson" asp-controller="Person" method="post">
     <div asp-validation-summary="ModelOnly"></div>
+
     <h4>First name</h4>
     <input asp-for="FirstName" type="text" />
     <span asp-validation-for="FirstName"></span>
+
     <h4>Last name</h4>
-    <input asp-for="LastName" type="text" />    <span asp-validation-for="LastName"></span>
-    <h4>City of birth</h4>
-    <input asp-for="City" type="text" />    <span asp-validation-for="City"></span>
+    <input asp-for="LastName" type="text" />
+    <span asp-validation-for="LastName"></span>
+
     <h4>Age</h4>
     <input asp-for="Age" type="number" />
     <span asp-validation-for="Age"></span>
+
+    <h4>City of birth</h4>
+    <input asp-for="City" type="text" />
+    <span asp-validation-for="City"></span>
+
     <h4>Phone</h4>
     <input asp-for="Phone" type="number" />
     <span asp-validation-for="Phone"></span>
+
     <button type="submit" value="NewPerson">Submit</button>
 </form>
 <a asp-action="ViewPeople">Back</a>

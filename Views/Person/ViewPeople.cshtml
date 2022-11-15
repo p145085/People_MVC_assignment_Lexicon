@@ -30,9 +30,14 @@
         </th>
     </tr>
 
+    <br />
+    <partial name="SearchPerson" model="Model"></partial>
+    <br />
+
     @foreach (Person person in Model){
 
         <partial name="PartialPeople" model="person"></partial>
+
 
         @*<tr>
             <td>
@@ -59,8 +64,19 @@
         </tr>*@
         @*@Html.ActionLink("Details","PersonDetails","Person", new {id = p.id}) @Html.ActionLink("Delete","Delete","Person", new {id = p.id})*@
     }
+
 </table>
 <br />
+
+@*Add buttons to sort the list on the page.
+o Sort in alphabetical order and reverse alphabetical order, by name or by city.
+• Add a checkbox which determines whether the filtering should be:
+o case sensitive or not.
+o Exact or contains.
+o city name or person name*@
 <button type="button" onclick="">
     Sort the list.
-</button>  
+</button>
+
+
+

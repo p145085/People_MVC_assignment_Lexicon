@@ -1,18 +1,24 @@
-﻿
+﻿@model List<Person>;
 <h3>Search</h3>
-<form asp-action="placeholder" asp-controller="placeholder">
-    <input type="text" name="nameQuery" value="" placeholder="Search for a name." />
-    <input type="text" name="cityQuery" value="" placeholder="Search for a city." />
 
-    <input type="submit" />
-    <p>
-        @if (ViewBag.Msg != null)
-        {
-            @ViewBag.Msg
-        }
-        @if (ViewBag.Num != null)
-        {
-            @ViewBag.Num
-        }
-    </p>
-</form>
+<input class="form-control" type="number" name="id" id="idInput" placeholder="Person ID" />
+
+<button onclick="postWithAjax('@Url.Action("PersonDetails","Person")','idInput')">Search for ID with AJAX.</button>
+
+
+@*<form asp-action="SearchPerson" asp-controller="Person" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Search</h4>
+    <input asp-for="SearchQuery" type="text" />
+    <span asp-validation-for="SearchQuery"></span>
+
+    <button type="submit" value="SearchPerson">Submit</button>
+</form>*@
+<br />
+
+<div id="result"></div>
+
+@* A form that allows you search the people in the table for whose names or cities
+with name containing the string you entered in the form (PeopleService.Search).
+*@

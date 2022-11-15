@@ -68,6 +68,9 @@
             {
                 originalPerson.FirstName = person.FirstName;
                 originalPerson.LastName = person.LastName;
+                originalPerson.Age = person.Age;
+                originalPerson.City = person.City;
+                originalPerson.Phone = person.Phone;
             }
         }
     }

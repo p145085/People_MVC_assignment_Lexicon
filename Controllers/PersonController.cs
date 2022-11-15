@@ -17,21 +17,21 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult ViewPeople()
         {
-            var x = _peopleService.GetAll();
-            return View(x);
+            var all = _peopleService.GetAll();
+            return View(all);
         }
 
         [HttpGet]
-        public IActionResult PeopleDetails(int id)
+        public IActionResult PersonDetails(int id)
         {
-            var p = _peopleService.FindById(id);
-            if (p == null)
+            var person = _peopleService.FindById(id);
+            if (person == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
-            if (p.Id == id)
+            if (person.Id == id)
             {
-                return View(p);
+                return View(person);
             }
             return View();
         }

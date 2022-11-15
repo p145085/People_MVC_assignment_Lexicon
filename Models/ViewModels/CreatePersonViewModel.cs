@@ -22,5 +22,15 @@ namespace People_MVC_assignment_Lexicon.Models.ViewModels
             FullName = FirstName + " " + LastName;
         }
 
+        public List<string> CityList
+        {
+            get
+            {
+                return new List<string>
+
+                { "Kalmar", "Malmö", "Göteborg", "Stockholm", "Växjö", "Uppsala" };
+            }
+        }
+
     }
 }
