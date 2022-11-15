@@ -1,9 +1,15 @@
 ﻿@model List<Person>;
 <h3>Search</h3>
 
-<input class="form-control" type="number" name="id" id="idInput" placeholder="Person ID" />
+<div class="input-group">
+    <div class="form-outline">
+        <input class="form-control" type="search" name="idSearch" id="idInput" placeholder="Person ID" />
+    </div>
 
-<button onclick="postWithAjax('@Url.Action("PersonDetails","Person")','idInput')">Search</button>
+    <button type="button" class="btn btn-primary" onclick="postWithAjax('@Url.Action("PersonDetails","Person")','idInput')">
+        Search
+    </button>
+</div>
 
 
 @*<form asp-action="SearchPerson" asp-controller="Person" method="post">
@@ -15,7 +21,6 @@
 
     <button type="submit" value="SearchPerson">Submit</button>
 </form>*@
-<br />
 
 <div id="result"></div>
 

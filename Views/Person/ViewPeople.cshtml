@@ -2,12 +2,13 @@
 <h3>Data</h3>
 
 <div class="row">
-    <div class="col-2">ID</div>
-    <div class="col-2">First Name</div>
-    <div class="col-2">Last Name</div>
-    <div class="col-2">Age</div>
-    <div class="col-2">City</div>
-    <div class="col-2">Phone</div>
+    <div class="col-1"><b>ID</b></div>
+    <div class="col-1"><b>First Name</b></div>
+    <div class="col-1"><b>Last Name</b></div>
+    <div class="col-1"><b>Age</b></div>
+    <div class="col-1"><b>City</b></div>
+    <div class="col-1"><b>Phone</b></div>
+    <div class="col-1"><b>Details</b></div>
 </div>
 
 @foreach (Person person in Model)
@@ -16,10 +17,6 @@
 }
 
 <partial name="SearchPerson" model="Model"></partial>
-
-<button type="button" onclick="">
-    Sort the list.
-</button>
 
 @*<table>
     <tr>
@@ -78,7 +75,6 @@
             </td>
         </tr>*@
         @*@Html.ActionLink("Details","PersonDetails","Person", new {id = p.id}) @Html.ActionLink("Delete","Delete","Person", new {id = p.id})*@
-    }
 @*
 </table>
 <br />*@

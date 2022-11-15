@@ -3,13 +3,25 @@
 <h1>Details page</h1>
 
 <div class="row">
-    <div class="col-2">@Model.Id</div>
-    <div class="col-2">@Model.FirstName</div>
-    <div class="col-2">@Model.LastName</div>
-    <div class="col-2">@Model.Age</div>
-    <div class="col-2">@Model.City</div>
-    <div class="col-2">@Model.Phone</div>
+    <div class="col-1"><b>ID</b></div>
+    <div class="col-1"><b>First Name</b></div>
+    <div class="col-1"><b>Last Name</b></div>
+    <div class="col-1"><b>Age</b></div>
+    <div class="col-1"><b>City</b></div>
+    <div class="col-1"><b>Phone</b></div>
+    <div class="col-1"><b>Details</b></div>
 </div>
+
+<div class="row">
+    <div class="col-1">@Model.Id</div>
+    <div class="col-1">@Model.FirstName</div>
+    <div class="col-1">@Model.LastName</div>
+    <div class="col-1">@Model.Age</div>
+    <div class="col-1">@Model.City</div>
+    <div class="col-1">@Model.Phone</div>
+</div>
+
+<a asp-action="ViewPeople">Back</a>
 
 @*<dl>
     <dt>ID</dt>
