@@ -1,13 +1,5 @@
 ﻿@model People_MVC_assignment_Lexicon.Models.ViewModels.CreatePersonViewModel
 <h3>Create</h3>
-@*<form asp-action="placeholder" asp-controller="placeholder">
-    <input type="text" name="firstName" value="" placeholder="First name." />
-    <input type="text" name="lastName" value="" placeholder="Last name." />
-    <input type="text" name="city" value="" placeholder="City." />
-    <input type="number" name="age" value="" placeholder="Age." />
-
-    <input type="submit" />
-</form>*@
 
 <form asp-action="NewPerson" asp-controller="Person" method="post">
     <div asp-validation-summary="ModelOnly"></div>
@@ -36,3 +28,11 @@
 </form>
 <a asp-action="ViewPeople">Back</a>
 
+@*<form asp-action="placeholder" asp-controller="placeholder">
+    <input type="text" name="firstName" value="" placeholder="First name." />
+    <input type="text" name="lastName" value="" placeholder="Last name." />
+    <input type="text" name="city" value="" placeholder="City." />
+    <input type="number" name="age" value="" placeholder="Age." />
+
+    <input type="submit" />
+</form>*@

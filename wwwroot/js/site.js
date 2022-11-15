@@ -19,7 +19,21 @@ function postWithAjax(actionUrl, idInput) {
     console.log("data: ", data);
 
     $.post(actionUrl, data, function (response) {
-        console.log("Response: ", response);
+        console.log("response: ", response);
+        document.getElementById("result").innerHTML = response;
+    });
+}
+
+function postWithAjaxDelete(actionUrl, idInput) { // Identical to 'postWithAjax'.
+    let inputElement = $("#" + idInput)
+    let data = {
+        [inputElement.attr("name")]: inputElement.val()
+    }
+    console.log("inputElement: ", inputElement);
+    console.log("data: ", data);
+
+    $.post(actionUrl, data, function (response) {
+        console.log("response: ", response);
         document.getElementById("result").innerHTML = response;
     });
 }

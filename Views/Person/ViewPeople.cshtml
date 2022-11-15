@@ -1,6 +1,27 @@
 ﻿@model List<Person>;
 <h3>Data</h3>
-<table>
+
+<div class="row">
+    <div class="col-2">ID</div>
+    <div class="col-2">First Name</div>
+    <div class="col-2">Last Name</div>
+    <div class="col-2">Age</div>
+    <div class="col-2">City</div>
+    <div class="col-2">Phone</div>
+</div>
+
+@foreach (Person person in Model)
+{
+    <partial name="PartialPeople" model="person"></partial>
+}
+
+<partial name="SearchPerson" model="Model"></partial>
+
+<button type="button" onclick="">
+    Sort the list.
+</button>
+
+@*<table>
     <tr>
         <th>
             <p>ID</p>
@@ -28,15 +49,9 @@
                 Details
             </p>
         </th>
-    </tr>
+    </tr>*@
 
-    <br />
-    <partial name="SearchPerson" model="Model"></partial>
-    <br />
-
-    @foreach (Person person in Model){
-
-        <partial name="PartialPeople" model="person"></partial>
+   
 
 
         @*<tr>
@@ -64,9 +79,9 @@
         </tr>*@
         @*@Html.ActionLink("Details","PersonDetails","Person", new {id = p.id}) @Html.ActionLink("Delete","Delete","Person", new {id = p.id})*@
     }
-
+@*
 </table>
-<br />
+<br />*@
 
 @*Add buttons to sort the list on the page.
 o Sort in alphabetical order and reverse alphabetical order, by name or by city.
@@ -74,9 +89,6 @@ o Sort in alphabetical order and reverse alphabetical order, by name or by city.
 o case sensitive or not.
 o Exact or contains.
 o city name or person name*@
-<button type="button" onclick="">
-    Sort the list.
-</button>
 
 
 

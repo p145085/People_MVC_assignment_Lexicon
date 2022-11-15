@@ -1,5 +1,10 @@
 ﻿
 <h3>Delete</h3>
+
+<input class="form-control" type="number" name="id" id="idInput" placeholder="Person ID" />
+
+<button onclick="postWithAjaxDelete('@Url.Action("DeletePerson","Person")','idInput')">Delete by ID</button>
+
 @*<form asp-action="DeletePerson" asp-controller="Person" method="post">
     <div asp-validation-summary="ModelOnly"></div>
 
