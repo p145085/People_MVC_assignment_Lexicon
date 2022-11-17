@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using People_MVC_assignment_Lexicon.Models;
 using People_MVC_assignment_Lexicon.Models.Repos;
 using People_MVC_assignment_Lexicon.Models.Services;
 using People_MVC_assignment_Lexicon.Models.ViewModels;
@@ -21,7 +22,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             return View(all);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult PersonDetails(int id)
         {
             var person = _peopleService.FindById(id);
@@ -30,6 +31,36 @@ namespace People_MVC_assignment_Lexicon.Controllers
                 return RedirectToAction(nameof(ViewPeople));
             }
             if (person.Id == id)
+            {
+                return View(person);
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult PersonSearchByName(string search)
+        {
+            var person = _peopleService.FindByName(search);
+            if (person == null)
+            {
+                return RedirectToAction(nameof(ViewPeople));
+            }
+            if (person.FullName.Contains(search))
+            {
+                return View(person);
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult PersonSearchByCity(string search)
+        {
+            var person = _peopleService.FindByCity(search);
+            if (person == null)
+            {
+                return RedirectToAction(nameof(ViewPeople));
+            }
+            if (person.City.Contains(search))
             {
                 return View(person);
             }
