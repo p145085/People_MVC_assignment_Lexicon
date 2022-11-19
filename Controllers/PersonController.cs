@@ -22,7 +22,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             return View(all);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult PersonDetails(int id)
         {
             var person = _peopleService.FindById(id);
@@ -48,6 +48,21 @@ namespace People_MVC_assignment_Lexicon.Controllers
             if (person.FullName.Contains(search))
             {
                 return View(person);
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult PersonSearch(string search)
+        {
+            List<Person> persons = _peopleService.GetByAny(search);
+            if (persons == null)
+            {
+                return RedirectToAction(nameof(ViewPeople));
+            }
+            if (persons != null)
+            {
+                return View(persons);
             }
             return View();
         }
@@ -93,9 +108,10 @@ namespace People_MVC_assignment_Lexicon.Controllers
             return View(person);
         }
 
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult DeletePerson(int delete)
         {
-            _peopleService.Remove(id);
+            _peopleService.Remove(delete);
             return RedirectToAction(nameof(ViewPeople));
         }
     }

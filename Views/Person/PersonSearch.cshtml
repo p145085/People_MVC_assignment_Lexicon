@@ -1,4 +1,4 @@
-﻿@model Person
+﻿@model List<Person>
 
 <h1>Details page</h1>
 
@@ -12,13 +12,16 @@
     <div class="col-1"><b>Details</b></div>
 </div>
 
-<div class="row">
-    <div class="col-1">@Model.Id</div>
-    <div class="col-1">@Model.FirstName</div>
-    <div class="col-1">@Model.LastName</div>
-    <div class="col-1">@Model.Age</div>
-    <div class="col-1">@Model.City</div>
-    <div class="col-1">@Model.Phone</div>
-</div>
+@foreach (Person person in Model){
+    <div class="row">
+        <div class="col-1">@person.Id</div>
+        <div class="col-1">@person.FirstName</div>
+        <div class="col-1">@person.LastName</div>
+        <div class="col-1">@person.Age</div>
+        <div class="col-1">@person.City</div>
+        <div class="col-1">@person.Phone</div>
+    </div>
+}
+
 
 <a asp-action="ViewPeople">Back</a>

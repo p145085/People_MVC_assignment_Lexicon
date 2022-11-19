@@ -9,6 +9,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         Person FindById(int id);
         Person FindByName(string name);
         Person FindByCity(string city);
+        List<Person> GetByAny(string search);
         bool Edit(int id, CreatePersonViewModel editPerson);
         bool Remove(int id);
     }

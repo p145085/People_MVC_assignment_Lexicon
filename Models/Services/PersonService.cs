@@ -52,6 +52,30 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         {
             return _personRepo.GetAll();
         }
+        public List<Person> GetByAny(string search)
+        {
+            List<Person> thePeople = InMemoryPersonRepo.personList;
+            List<Person> theFoundPeople = new List<Person>();
+
+            if (search != null)
+            {
+                foreach (Person person in thePeople)
+                {
+                    if (
+                        search == person.FirstName || search == person.FirstName || search == person.LastName ||
+                        search == person.City
+                        )
+                    {
+                        theFoundPeople.Add(person);
+                    }
+                }
+                return theFoundPeople;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public bool Edit(int id, CreatePersonViewModel person)
         {

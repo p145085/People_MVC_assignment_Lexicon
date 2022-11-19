@@ -1,9 +1,9 @@
 ﻿@model List<Person>;
 <h3>Search</h3>
 
-<form method="get" action="@Url.Action("PersonSearchByName", "Person")">
+<form method="get" action="@Url.Action("PersonSearch", "Person")">
     <label for="search">Search</label>
-    <input type="text" name="search" id="search" />
+    <input type="search" name="search" id="search" />
     <button type="submit">Perform search</button>
 </form>
 
