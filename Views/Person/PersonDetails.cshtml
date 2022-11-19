@@ -1,16 +1,42 @@
 ﻿@model Person
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+
 <h1>Details page</h1>
 
-<dl>
+<div class="row">
+    <div class="col-1"><b>ID</b></div>
+    <div class="col-1"><b>First Name</b></div>
+    <div class="col-1"><b>Last Name</b></div>
+    <div class="col-1"><b>Age</b></div>
+    <div class="col-1"><b>City</b></div>
+    <div class="col-1"><b>Phone</b></div>
+    <div class="col-1"><b>Details</b></div>
+</div>
+
+<div class="row">
+    <div class="col-1">@Model.Id</div>
+    <div class="col-1">@Model.FirstName</div>
+    <div class="col-1">@Model.LastName</div>
+    <div class="col-1">@Model.Age</div>
+    <div class="col-1">@Model.City</div>
+    <div class="col-1">@Model.Phone</div>
+</div>
+
+<a asp-action="ViewPeople">Back</a>
+
+@*<dl>
+    <dt>ID</dt>
+    <dd>@Model.Id</dd>
+
     <dt>Name</dt>
+    <dd>@Model.FullName</dd>
     <dd>@Model.FirstName @Model.LastName</dd>
-    <dt>City of birth</dt>
-    <dd>@Model.City</dd>
+
     <dt>Age</dt>
     <dd>@Model.Age</dd>
-</dl>
+
+    <dt>City of birth</dt>
+    <dd>@Model.City</dd>
+
+    <dt>Phone</dt>
+    <dd>@Model.Phone</dd>
+</dl>*@

@@ -1,6 +1,20 @@
 ﻿@model List<Person>;
-<h3>Data</h3>
-<table>
+<h3>ViewPeople</h3>
+
+<partial name="PeopleHeader" model="Model"></partial>
+
+@foreach (Person person in Model)
+{
+    <partial name="PartialPeople" model="person"></partial>
+}
+
+<partial name="SearchPerson" model="Model"></partial>
+
+<partial name="DeletePerson" model="Model"></partial>
+
+
+
+@*<table>
     <tr>
         <th>
             <p>ID</p>
@@ -12,25 +26,39 @@
             <p>Last Name</p>
         </th>
         <th>
-            <p>City</p>
+            <p>Full Name</p>
         </th>
         <th>
             <p>Age</p>
+        </th>
+        <th>
+            <p>City</p>
+        </th>
+        <th>
+            <p>Phone</p>
         </th>
         <th>
             <p>
                 Details
             </p>
         </th>
-    </tr>
+    </tr>*@
 
-    @foreach (Person person in Model){
-        <tr>
+   
+
+
+        @*<tr>
+            <td>
+                @person.Id
+            </td>
             <td>
                 @person.FirstName
             </td>
             <td>
                 @person.LastName
+            </td>
+            <td>
+                @person.FullName
             </td>
             <td>
                 @person.Age
@@ -41,11 +69,18 @@
             <td>
                 @person.Phone
             </td>
-        </tr>
+        </tr>*@
         @*@Html.ActionLink("Details","PersonDetails","Person", new {id = p.id}) @Html.ActionLink("Delete","Delete","Person", new {id = p.id})*@
-    }
+@*
 </table>
-<br />
-<button type="button" onclick="">
-    Sort the list.
-</button>  
+<br />*@
+
+@*Add buttons to sort the list on the page.
+o Sort in alphabetical order and reverse alphabetical order, by name or by city.
+• Add a checkbox which determines whether the filtering should be:
+o case sensitive or not.
+o Exact or contains.
+o city name or person name*@
+
+
+

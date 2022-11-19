@@ -1,6 +1,26 @@
-﻿
+﻿@model List<Person>
+
 <h3>Delete</h3>
-<form asp-action="placeholder" asp-controller="placeholder">
-    <input type="number" name="id" value="" placeholder="Input an ID to delete." />
-    <input type="submit" />
+
+<form method="get" action="@Url.Action("DeletePerson", "Person")">
+    <label for="delete">Delete</label>
+    <input type="number" name="delete" id="delete" />
+    <button type="submit">Execute deletion</button>
 </form>
+@*
+<input class="form-control" type="number" name="id" id="idInput" placeholder="Person ID" />
+
+<button onclick="postWithAjaxDelete('@Url.Action("DeletePerson","Person")','idInput')">Delete by ID</button>*@
+
+@*<form asp-action="DeletePerson" asp-controller="Person" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Delete by ID</h4>
+    <input asp-for="DeleteQuery" type="text" />
+    <span asp-validation-for="DeleteQuery"></span>
+
+    <button type="submit" value="DeletePerson">Submit</button>
+</form>*@
+
+@*An Details view that shows all information about a single person.
+o A link that when clicked, deletes that person. *@

@@ -39,7 +39,7 @@
             Person person = null;
             foreach (Person aPerson in personList)
             {
-                if (aPerson.FirstName == name || aPerson.LastName == name)
+                if (aPerson.FirstName.Contains(name) || aPerson.LastName.Contains(name))
                 {
                     person = aPerson;
                     break;
@@ -68,6 +68,9 @@
             {
                 originalPerson.FirstName = person.FirstName;
                 originalPerson.LastName = person.LastName;
+                originalPerson.Age = person.Age;
+                originalPerson.City = person.City;
+                originalPerson.Phone = person.Phone;
             }
         }
     }

@@ -1,18 +1,42 @@
-﻿
+﻿@model List<Person>;
 <h3>Search</h3>
-<form asp-action="placeholder" asp-controller="placeholder">
-    <input type="text" name="nameQuery" value="" placeholder="Search for a name." />
-    <input type="text" name="cityQuery" value="" placeholder="Search for a city." />
 
-    <input type="submit" />
-    <p>
-        @if (ViewBag.Msg != null)
-        {
-            @ViewBag.Msg
-        }
-        @if (ViewBag.Num != null)
-        {
-            @ViewBag.Num
-        }
-    </p>
+<form method="get" action="@Url.Action("PersonSearch", "Person")">
+    <label for="search">Search</label>
+    <input type="search" name="search" id="search" />
+    <button type="submit">Perform search</button>
 </form>
+
+@*<div class="input-group">
+    <div class="form-outline">
+        <input class="form-control" type="search" name="idSearch" id="idInput" placeholder="Person ID" />
+    </div>*@
+
+    @*<button type="button" class="btn btn-primary" onclick=@Url.Action("PersonSearchByName","Person"), idInput>
+        Search
+    </button>*@
+
+    @*<form asp-action="PersonSearchByName" asp-controller="Person" method="post">
+        <button type="submit" value="PersonSearchByName">Search</button>
+    </form>
+    <a asp-action="ViewPeople">Back</a>*@
+
+@*
+</div>*@
+
+
+@*<form asp-action="SearchPerson" asp-controller="Person" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Search</h4>
+    <input asp-for="SearchQuery" type="text" />
+    <span asp-validation-for="SearchQuery"></span>
+
+    <button type="submit" value="SearchPerson">Submit</button>
+</form>*@
+
+<div id="result"></div>
+
+@* A form that allows you search the people in the table for whose names or cities
+with name containing the string you entered in the form (PeopleService.Search).
+*@

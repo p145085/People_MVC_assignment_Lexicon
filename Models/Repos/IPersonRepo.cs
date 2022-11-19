@@ -7,7 +7,6 @@
         Person GetById(int id);
         Person GetByName(string name);
         Person GetByCity(string city);
-
         void Update(Person person);
 
         void Delete(Person person);

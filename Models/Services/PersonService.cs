@@ -14,17 +14,23 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public Person Create(CreatePersonViewModel createPerson)
         {
-            if (string.IsNullOrWhiteSpace(createPerson.firstName) ||
-                string.IsNullOrWhiteSpace(createPerson.lastName) ||
-                string.IsNullOrWhiteSpace(createPerson.fullName))
+            if (string.IsNullOrWhiteSpace(createPerson.FirstName) ||
+                string.IsNullOrWhiteSpace(createPerson.LastName) //||
+                //string.IsNullOrWhiteSpace(createPerson.FullName))
+                )
             { 
                 throw new ArgumentException("No whitespace allowed."); 
             }
 
             Person person = new Person()
             {
-                FirstName = createPerson.firstName,
-                LastName = createPerson.lastName,
+                Id = createPerson.Id,
+                FirstName = createPerson.FirstName,
+                LastName = createPerson.LastName,
+                City = createPerson.City,
+                Age = createPerson.Age,
+                FullName = createPerson.FullName,
+                Phone = createPerson.Phone,
             };
             person = _personRepo.Create(person);
             return person;
@@ -46,16 +52,40 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         {
             return _personRepo.GetAll();
         }
+        public List<Person> GetByAny(string search)
+        {
+            List<Person> thePeople = InMemoryPersonRepo.personList;
+            List<Person> theFoundPeople = new List<Person>();
+
+            if (search != null)
+            {
+                foreach (Person person in thePeople)
+                {
+                    if (
+                        search == person.FirstName || search == person.FirstName || search == person.LastName ||
+                        search == person.City
+                        )
+                    {
+                        theFoundPeople.Add(person);
+                    }
+                }
+                return theFoundPeople;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public bool Edit(int id, CreatePersonViewModel person)
         {
             foreach (Person p in InMemoryPersonRepo.personList)
                 if (id == p.Id)
                 {
-                    p.FirstName = person.firstName;
-                    p.City = person.city;
-                    p.Age = person.age;
-                    p.LastName = person.lastName;
+                    p.FirstName = person.FirstName;
+                    p.City = person.City;
+                    p.Age = person.Age;
+                    p.LastName = person.LastName;
                     return true;
                 }
             return false;
