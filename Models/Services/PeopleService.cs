@@ -1,22 +1,23 @@
-﻿using People_MVC_assignment_Lexicon.Models.Repos;
+﻿using People_MVC_assignment_Lexicon.Models.Basemodels;
+using People_MVC_assignment_Lexicon.Models.Repos;
 using People_MVC_assignment_Lexicon.Models.ViewModels;
 using System;
 using System.Xml.Linq;
 
 namespace People_MVC_assignment_Lexicon.Models.Services
 {
-    public class PersonService : IPersonService
+    public class PeopleService : IPeopleService
     {
-        IPersonRepo _personRepo;
-        public PersonService(IPersonRepo personRepo)
+        IPeopleRepo _personRepo;
+        public PeopleService(IPeopleRepo personRepo)
         {
             _personRepo = personRepo;
         }
+
         public Person Create(CreatePersonViewModel createPerson)
         {
             if (string.IsNullOrWhiteSpace(createPerson.FirstName) ||
-                string.IsNullOrWhiteSpace(createPerson.LastName) //||
-                //string.IsNullOrWhiteSpace(createPerson.FullName))
+                string.IsNullOrWhiteSpace(createPerson.LastName)
                 )
             { 
                 throw new ArgumentException("No whitespace allowed."); 
@@ -27,7 +28,6 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 Id = createPerson.Id,
                 FirstName = createPerson.FirstName,
                 LastName = createPerson.LastName,
-                City = createPerson.City,
                 Age = createPerson.Age,
                 FullName = createPerson.FullName,
                 Phone = createPerson.Phone,
@@ -40,11 +40,11 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         {
             return _personRepo.GetById(id);
         }
-        public Person FindByName(string name)
+        public List<Person> FindByName(string name)
         {
             return _personRepo.GetByName(name);
         }
-        public Person FindByCity(string city)
+        public List<Person> FindByCity(string city)
         {
             return _personRepo.GetByCity(city);
         }
@@ -54,7 +54,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public List<Person> GetByAny(string search)
         {
-            List<Person> thePeople = InMemoryPersonRepo.personList;
+            List<Person> thePeople = _personRepo.GetAll();
             List<Person> theFoundPeople = new List<Person>();
 
             if (search != null)
@@ -62,8 +62,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 foreach (Person person in thePeople)
                 {
                     if (
-                        search == person.FirstName || search == person.FirstName || search == person.LastName ||
-                        search == person.City
+                        search == person.FirstName || search == person.FirstName || search == person.LastName
                         )
                     {
                         theFoundPeople.Add(person);
@@ -79,11 +78,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public bool Edit(int id, CreatePersonViewModel person)
         {
-            foreach (Person p in InMemoryPersonRepo.personList)
+            foreach (Person p in _personRepo.GetAll())
                 if (id == p.Id)
                 {
                     p.FirstName = person.FirstName;
-                    p.City = person.City;
                     p.Age = person.Age;
                     p.LastName = person.LastName;
                     return true;
@@ -93,10 +91,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public bool Remove(int id)
         {
-            foreach (Person p in InMemoryPersonRepo.personList)
+            foreach (Person p in _personRepo.GetAll())
                 if (id == p.Id)
                 {
-                    InMemoryPersonRepo.personList.Remove(p);
+                    _personRepo.GetAll().Remove(p);
                     return true;
                 }
             return false;

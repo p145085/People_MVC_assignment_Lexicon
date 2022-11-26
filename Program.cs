@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using People_MVC_assignment_Lexicon.Models;
+using People_MVC_assignment_Lexicon.Models.Repos;
+using People_MVC_assignment_Lexicon.Models.Services;
+
 namespace People_MVC_assignment_Lexicon
 {
     public class Program
@@ -8,6 +13,17 @@ namespace People_MVC_assignment_Lexicon
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<PeopleDbContext>(
+                options =>
+            options.UseSqlServer(
+                builder.Configuration.GetConnectionString(
+                    "DefaultConnection"
+                    )
+                )
+            );
+            //builder.Services.AddScoped<IPersonRepo, InMemoryPersonRepo>();
+            builder.Services.AddScoped<IPeopleRepo, DatabasePersonRepo>();
+            builder.Services.AddScoped<IPeopleService, PeopleService>();
 
             var app = builder.Build();
 
