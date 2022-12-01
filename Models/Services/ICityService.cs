@@ -5,13 +5,12 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 {
     public interface ICityService
     {
-        City Create();
+        City Create(CreateCityViewModel createCityViewModel);
         List<City> GetAll();
         City FindById(int id);
-        List<City> FindByName(string name);
         List<City> FindByCity(string city);
         List<City> GetByAny(string search);
-        bool Edit(int id);
+        bool Edit(int id, CreateCityViewModel createCityViewModel);
         bool Remove(int id);
     }
 }

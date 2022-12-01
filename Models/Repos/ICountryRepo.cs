@@ -9,6 +9,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
         Country GetById(int id);
         List<Country> GetByName(string name);
         List<Country> GetByCountry(string country);
+        List<Country> GetByAny(string search);
         void Update(Country country);
         void Delete(Country country);
     }

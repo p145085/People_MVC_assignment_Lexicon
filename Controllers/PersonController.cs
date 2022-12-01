@@ -18,14 +18,14 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult ViewPeople()
         {
-            var all = _peopleService.GetAll();
+            List<Person> all = _peopleService.GetAll();
             return View(all);
         }
 
         [HttpGet]
         public IActionResult PersonDetails(int id)
         {
-            Person person = _peopleService.FindById(id);
+            Person person = _peopleService.GetById(id);
             if (person == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
@@ -50,10 +50,10 @@ namespace People_MVC_assignment_Lexicon.Controllers
                 foreach (Person person in result)
                 {
                     if (person.FirstName == search 
-                        || person.LastName == search)
+                        || person.LastName == search
+                        || person.FullName == search)
                     {
                         return View(person);
-                        break;
                     }
                 }
                 return View(result);
@@ -81,7 +81,6 @@ namespace People_MVC_assignment_Lexicon.Controllers
                         )
                     {
                         return View(person);
-                        break;
                     }
                 }
                 return View(result);
@@ -104,7 +103,6 @@ namespace People_MVC_assignment_Lexicon.Controllers
                     if (person.City.Name == search)
                     {
                         return View(person);
-                        break;
                     }
                 }
                 return View(result);

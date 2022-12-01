@@ -9,6 +9,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
         Language GetById(int id);
         List<Language> GetByName(string name);
         List<Language> GetByLanguage(string language);
+        List<Language> GetByAny(string search);
         void Update(Language language);
         void Delete(Language language);
     }

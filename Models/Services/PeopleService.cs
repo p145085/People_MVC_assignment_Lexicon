@@ -2,6 +2,7 @@
 using People_MVC_assignment_Lexicon.Models.Repos;
 using People_MVC_assignment_Lexicon.Models.ViewModels;
 using System;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace People_MVC_assignment_Lexicon.Models.Services
@@ -36,17 +37,9 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             return person;
         }
 
-        public Person FindById(int id)
+        public Person GetById(int id)
         {
             return _personRepo.GetById(id);
-        }
-        public List<Person> FindByName(string name)
-        {
-            return _personRepo.GetByName(name);
-        }
-        public List<Person> FindByCity(string city)
-        {
-            return _personRepo.GetByCity(city);
         }
         public List<Person> GetAll()
         {
@@ -62,7 +55,13 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 foreach (Person person in thePeople)
                 {
                     if (
-                        search == person.FirstName || search == person.FirstName || search == person.LastName
+                        search == person.Id.ToString()
+                        || search == person.FirstName
+                        || search == person.LastName
+                        || search == person.FullName
+                        || search == person.Age.ToString()
+                        || search == person.City.ToString()
+                        || search == person.Phone.ToString()
                         )
                     {
                         theFoundPeople.Add(person);
@@ -78,12 +77,14 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public bool Edit(int id, CreatePersonViewModel person)
         {
-            foreach (Person p in _personRepo.GetAll())
-                if (id == p.Id)
+            foreach (Person temp in _personRepo.GetAll())
+                if (temp.Id == id)
                 {
-                    p.FirstName = person.FirstName;
-                    p.Age = person.Age;
-                    p.LastName = person.LastName;
+                    temp.FirstName = person.FirstName;
+                    temp.LastName = person.LastName;
+                    temp.FullName = person.FullName;
+                    temp.Age = person.Age;
+                    temp.Phone = person.Phone;
                     return true;
                 }
             return false;
@@ -91,10 +92,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public bool Remove(int id)
         {
-            foreach (Person p in _personRepo.GetAll())
-                if (id == p.Id)
+            foreach (Person temp in _personRepo.GetAll())
+                if (id == temp.Id)
                 {
-                    _personRepo.GetAll().Remove(p);
+                    _personRepo.GetAll().Remove(temp);
                     return true;
                 }
             return false;

@@ -8,8 +8,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
         Person Create(Person person);
         List<Person> GetAll();
         Person GetById(int id);
-        List<Person> GetByName(string name);
-        List<Person> GetByCity(string city);
+        List<Person> GetByAny(string search);
         void Update(Person person);
         void Delete(Person person);
     }

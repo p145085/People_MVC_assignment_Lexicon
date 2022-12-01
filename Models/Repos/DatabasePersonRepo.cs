@@ -55,6 +55,8 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
                 x.FirstName == name
                 ||
                 x.LastName == name
+                ||
+                x.FullName == name
                 ).ToList();
         }
 
