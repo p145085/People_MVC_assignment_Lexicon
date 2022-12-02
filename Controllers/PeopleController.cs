@@ -1,31 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using People_MVC_assignment_Lexicon.Models;
+using People_MVC_assignment_Lexicon.Models.Basemodels;
 using People_MVC_assignment_Lexicon.Models.Repos;
 using People_MVC_assignment_Lexicon.Models.Services;
 using People_MVC_assignment_Lexicon.Models.ViewModels;
 
 namespace People_MVC_assignment_Lexicon.Controllers
 {
-    public class PersonController : Controller
+    public class PeopleController : Controller
     {
-        IPersonService _peopleService;
+        IPeopleService _peopleService;
 
-        public PersonController()
+        public PeopleController(IPeopleService peopleService)
         {
-            _peopleService = new PersonService(new InMemoryPersonRepo());
+            _peopleService = peopleService;
         }
 
         [HttpGet]
         public IActionResult ViewPeople()
         {
-            var all = _peopleService.GetAll();
+            List<Person> all = _peopleService.GetAll();
             return View(all);
         }
 
         [HttpGet]
         public IActionResult PersonDetails(int id)
         {
-            var person = _peopleService.FindById(id);
+            Person person = _peopleService.GetById(id);
             if (person == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
@@ -40,14 +40,23 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearchByName(string search)
         {
-            var person = _peopleService.FindByName(search);
-            if (person == null)
+            List<Person> result = _peopleService.GetByName(search);
+            if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
-            if (person.FullName.Contains(search))
+            if (result != null)
             {
-                return View(person);
+                foreach (Person person in result)
+                {
+                    if (person.FirstName == search 
+                        || person.LastName == search
+                        || person.FullName == search)
+                    {
+                        return View(person);
+                    }
+                }
+                return View(result);
             }
             return View();
         }
@@ -55,14 +64,26 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearch(string search)
         {
-            List<Person> persons = _peopleService.GetByAny(search);
-            if (persons == null)
+            List<Person> result = _peopleService.GetByAny(search);
+            if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
-            if (persons != null)
+            if (result != null)
             {
-                return View(persons);
+                foreach (Person person in result)
+                {
+                    if (person.FirstName == search
+                        || person.LastName == search
+                        || person.City.Name == search
+                        || person.Age.ToString() == search
+                        || person.Phone.ToString() == search
+                        )
+                    {
+                        return View(person);
+                    }
+                }
+                return View(result);
             }
             return View();
         }
@@ -70,14 +91,21 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearchByCity(string search)
         {
-            var person = _peopleService.FindByCity(search);
-            if (person == null)
+            List<Person> result = _peopleService.GetByAny(search);
+            if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
-            if (person.City.Contains(search))
+            if (result != null)
             {
-                return View(person);
+                foreach (Person person in result)
+                {
+                    if (person.City.Name == search)
+                    {
+                        return View(person);
+                    }
+                }
+                return View(result);
             }
             return View();
         }

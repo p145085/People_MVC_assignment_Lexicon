@@ -4,13 +4,8 @@ namespace People_MVC_assignment_Lexicon.Models.ViewModels
 {
     public class CreatePersonViewModel
     {
-        [Display(Name = "a Person")]
-        [Required]
         public string? FirstName { get; set; }
-        [Display(Name = "of Excellence")]
-        [Required]
         public string? LastName { get; set; }
-
         public string? FullName { get { return FullName = FirstName + LastName; } set { } }
         public int Id { get; set; }
         public int Age { get; set; }
@@ -21,16 +16,5 @@ namespace People_MVC_assignment_Lexicon.Models.ViewModels
         {
             FullName = FirstName + " " + LastName;
         }
-
-        public List<string> CityList
-        {
-            get
-            {
-                return new List<string>
-
-                { "Kalmar", "Malmö", "Göteborg", "Stockholm", "Växjö", "Uppsala" };
-            }
-        }
-
     }
 }
