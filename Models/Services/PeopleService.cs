@@ -41,6 +41,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         {
             return _personRepo.GetById(id);
         }
+        public List<Person> GetByName(string name)
+        {
+            return _personRepo.GetByAny(name);
+        }
         public List<Person> GetAll()
         {
             return _personRepo.GetAll();

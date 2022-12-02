@@ -30,6 +30,16 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
             return _context.People.ToList();
         }
 
+        public List<Person> GetByAny(string search)
+        {
+            //return _context.People
+            //    .Where(
+            //    x => x.FOO == search
+            //    ).ToList();
+            // Not implemented.
+            throw new NotImplementedException();
+        }
+
         public List<Person> GetByCity(string city)
         {
             return _context.People

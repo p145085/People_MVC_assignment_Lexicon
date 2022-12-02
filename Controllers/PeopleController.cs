@@ -6,11 +6,11 @@ using People_MVC_assignment_Lexicon.Models.ViewModels;
 
 namespace People_MVC_assignment_Lexicon.Controllers
 {
-    public class PersonController : Controller
+    public class PeopleController : Controller
     {
         IPeopleService _peopleService;
 
-        public PersonController(IPeopleService peopleService)
+        public PeopleController(IPeopleService peopleService)
         {
             _peopleService = peopleService;
         }
@@ -40,7 +40,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearchByName(string search)
         {
-            List<Person> result = _peopleService.FindByName(search);
+            List<Person> result = _peopleService.GetByName(search);
             if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
@@ -91,7 +91,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearchByCity(string search)
         {
-            List<Person> result = _peopleService.FindByCity(search);
+            List<Person> result = _peopleService.GetByAny(search);
             if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
