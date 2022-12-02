@@ -16,8 +16,5 @@ namespace People_MVC_assignment_Lexicon.Models.ViewModels
         {
             FullName = FirstName + " " + LastName;
         }
-
-        
-
     }
 }
