@@ -22,8 +22,18 @@ namespace People_MVC_assignment_Lexicon
                 )
             );
             //builder.Services.AddScoped<IPersonRepo, InMemoryPersonRepo>();
-            builder.Services.AddScoped<IPeopleRepo, DatabasePersonRepo>();
             builder.Services.AddScoped<IPeopleService, PeopleService>();
+            builder.Services.AddScoped<IPeopleRepo, DatabasePersonRepo>();
+
+            builder.Services.AddScoped<ICityService, CityService>();
+            builder.Services.AddScoped<ICityRepo, DatabaseCityRepo>();
+
+            builder.Services.AddScoped<ICountryService, CountryService>();
+            builder.Services.AddScoped<ICountryRepo, DatabaseCountryRepo>();
+
+            builder.Services.AddScoped<ILanguageService, LanguageService>();
+            builder.Services.AddScoped<ILanguageRepo, DatabaseLanguageRepo>();
+
 
             var app = builder.Build();
 
@@ -44,7 +54,7 @@ namespace People_MVC_assignment_Lexicon
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{Id?}");
+                pattern: "{controller=Home}/{action=Index}/{CityId?}");
 
             app.Run();
         }

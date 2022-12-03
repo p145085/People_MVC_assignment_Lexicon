@@ -29,7 +29,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             {
                 return RedirectToAction(nameof(ViewCountries));
             }
-            if (country.Id == id)
+            if (country.CountryId == id)
             {
                 return View(country);
             }

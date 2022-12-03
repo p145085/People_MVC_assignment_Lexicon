@@ -26,14 +26,12 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
             Person person = new Person()
             {
-                Id = createPerson.Id,
                 FirstName = createPerson.FirstName,
                 LastName = createPerson.LastName,
                 Age = createPerson.Age,
-                FullName = createPerson.FullName,
                 Phone = createPerson.Phone,
             };
-            person = _personRepo.Create(person);
+            _personRepo.Create(person);
             return person;
         }
 
@@ -59,12 +57,11 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 foreach (Person person in thePeople)
                 {
                     if (
-                        search == person.Id.ToString()
+                        search == person.PersonId.ToString()
                         || search == person.FirstName
                         || search == person.LastName
-                        || search == person.FullName
                         || search == person.Age.ToString()
-                        || search == person.City.ToString()
+                        //|| search == person.City.Name.ToString()
                         || search == person.Phone.ToString()
                         )
                     {
@@ -82,11 +79,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Edit(int id, CreatePersonViewModel person)
         {
             foreach (Person temp in _personRepo.GetAll())
-                if (temp.Id == id)
+                if (temp.PersonId == id)
                 {
                     temp.FirstName = person.FirstName;
                     temp.LastName = person.LastName;
-                    temp.FullName = person.FullName;
                     temp.Age = person.Age;
                     temp.Phone = person.Phone;
                     return true;
@@ -97,7 +93,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Remove(int id)
         {
             foreach (Person temp in _personRepo.GetAll())
-                if (id == temp.Id)
+                if (id == temp.PersonId)
                 {
                     _personRepo.GetAll().Remove(temp);
                     return true;

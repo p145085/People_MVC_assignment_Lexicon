@@ -29,7 +29,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             {
                 return RedirectToAction(nameof(ViewCities));
             }
-            if (city.Id == id)
+            if (city.CityId == id)
             {
                 return View(city);
             }
@@ -110,22 +110,22 @@ namespace People_MVC_assignment_Lexicon.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult NewCity(CreateCityViewModel city)
+        public IActionResult NewCity(CreateCityViewModel ccvm)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _citiesService.Create(city);
+                    _citiesService.Create(ccvm);
                 }
                 catch (ArgumentException exception)
                 {
                     ModelState.AddModelError("error", exception.Message);
-                    return View(city);
+                    return View(ccvm);
                 }
                 return RedirectToAction(nameof(ViewCities));
             }
-            return View(city);
+            return View(ccvm);
         }
 
         [HttpGet]

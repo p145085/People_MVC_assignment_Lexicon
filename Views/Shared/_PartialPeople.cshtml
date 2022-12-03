@@ -1,11 +1,11 @@
 ﻿@model Person
 
 <div class="row">
-    <div class="col-1">@Model.Id</div>
+    <div class="col-1">@Model.PersonId</div>
     <div class="col-1">@Model.FirstName</div>
     <div class="col-1">@Model.LastName</div>
     <div class="col-1">@Model.Age</div>
     <div class="col-1">@Model.City</div>
     <div class="col-1">@Model.Phone</div>
-    <div class="col-1">@Html.ActionLink("Details","PersonDetails","Person", new {id = Model.Id})</div>
+    <div class="col-1">@Html.ActionLink("Details","PersonDetails","Person", new {id = Model.PersonId})</div>
 </div>

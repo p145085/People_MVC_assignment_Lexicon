@@ -14,7 +14,7 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //    }
     //    //    public Person Create(Person person)
     //    //    {
-    //    //        person.Id = ++idCounter;
+    //    //        person.CityId = ++idCounter;
     //    //        personList.Add(person);
     //    //        return person;
     //    //    }
@@ -34,7 +34,7 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //        Person person = null;
     //    //        foreach (Person aPerson in personList)
     //    //        {
-    //    //            if (aPerson.Id == id)
+    //    //            if (aPerson.CityId == id)
     //    //            {
     //    //                person = aPerson;
     //    //                break;
@@ -71,7 +71,7 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
 
     //    //    public void Update(Person person)
     //    //    {
-    //    //        Person originalPerson = GetById(person.Id);
+    //    //        Person originalPerson = GetById(person.CityId);
     //    //        if (originalPerson != null)
     //    //        {
     //    //            originalPerson.FirstName = person.FirstName;

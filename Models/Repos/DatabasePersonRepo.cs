@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using People_MVC_assignment_Lexicon.Models.Basemodels;
 
 namespace People_MVC_assignment_Lexicon.Models.Repos
@@ -50,10 +49,10 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
 
         public Person GetById(int id)
         {
-            return _context.People.SingleOrDefault(x => x.Id == id);
+            return _context.People.SingleOrDefault(x => x.PersonId == id);
 
                 //.Where(
-                //x => x.Id == id
+                //x => x.CityId == id
                 //);
         }
 
@@ -65,8 +64,6 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
                 x.FirstName == name
                 ||
                 x.LastName == name
-                ||
-                x.FullName == name
                 ).ToList();
         }
 
