@@ -64,25 +64,13 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearch(string search)
         {
-            List<Person> result = _peopleService.GetByAny(search);
+            List<Person>? result = _peopleService.GetByName(search);
             if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
             if (result != null)
             {
-                foreach (Person person in result)
-                {
-                    if (person.FirstName == search
-                        || person.LastName == search
-                        || person.City.Name == search
-                        || person.Age.ToString() == search
-                        || person.Phone.ToString() == search
-                        )
-                    {
-                        return View(person);
-                    }
-                }
                 return View(result);
             }
             return View();

@@ -110,22 +110,22 @@ namespace People_MVC_assignment_Lexicon.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult NewCountry(CreateCountryViewModel country)
+        public IActionResult NewCountry(CreateCountryViewModel ccvm)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _countryService.Create(country);
+                    _countryService.Create(ccvm);
                 }
                 catch (ArgumentException exception)
                 {
                     ModelState.AddModelError("error", exception.Message);
-                    return View(country);
+                    return View(ccvm);
                 }
                 return RedirectToAction(nameof(ViewCountries));
             }
-            return View(country);
+            return View(ccvm);
         }
 
         [HttpGet]

@@ -41,7 +41,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public List<Person> GetByName(string name)
         {
-            return _personRepo.GetByAny(name);
+            return _personRepo.GetByName(name);
         }
         public List<Person> GetAll()
         {
@@ -49,31 +49,32 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public List<Person> GetByAny(string search)
         {
-            List<Person> thePeople = _personRepo.GetAll();
-            List<Person> theFoundPeople = new List<Person>();
+            //List<Person> thePeople = _personRepo.GetAll();
+            //List<Person> theFoundPeople = new List<Person>();
 
-            if (search != null)
-            {
-                foreach (Person person in thePeople)
-                {
-                    if (
-                        search == person.PersonId.ToString()
-                        || search == person.FirstName
-                        || search == person.LastName
-                        || search == person.Age.ToString()
-                        //|| search == person.City.Name.ToString()
-                        || search == person.Phone.ToString()
-                        )
-                    {
-                        theFoundPeople.Add(person);
-                    }
-                }
-                return theFoundPeople;
-            }
-            else
-            {
-                return null;
-            }
+            //if (search != null)
+            //{
+            //    foreach (Person person in thePeople)
+            //    {
+            //        if (
+            //            search == person.PersonId.ToString()
+            //            || search == person.FirstName
+            //            || search == person.LastName
+            //            || search == person.Age.ToString()
+            //            //|| search == person.City.Name.ToString()
+            //            || search == person.Phone.ToString()
+            //            )
+            //        {
+            //            theFoundPeople.Add(person);
+            //        }
+            //    }
+            //    return theFoundPeople;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            throw new NotImplementedException();
         }
 
         public bool Edit(int id, CreatePersonViewModel person)
@@ -96,6 +97,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 if (id == temp.PersonId)
                 {
                     _personRepo.GetAll().Remove(temp);
+                    _personRepo.Delete(temp);
                     return true;
                 }
             return false;

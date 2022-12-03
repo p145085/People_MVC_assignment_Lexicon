@@ -15,13 +15,13 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
         public Country Create(CreateCountryViewModel createCountryViewModel)
         {
-            if (string.IsNullOrWhiteSpace(createCountryViewModel.Name))
+            if (string.IsNullOrWhiteSpace(createCountryViewModel.Country))
             {
                 throw new ArgumentException("No whitespace allowed.");
             }
             Country country = new Country()
             {
-                Name = createCountryViewModel.Name,
+                Name = createCountryViewModel.Country,
             };
             country = _countryRepo.Create(country);
             return country;
@@ -32,7 +32,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             foreach (Country temp in _countryRepo.GetAll())
                 if (temp.CountryId == id)
                 {
-                    temp.Name = createCountryViewModel.Name;
+                    temp.Name = createCountryViewModel.Country;
                     return true;
                 }
             return false;
