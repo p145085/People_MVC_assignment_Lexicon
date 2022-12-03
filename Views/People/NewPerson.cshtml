@@ -1,7 +1,7 @@
 ﻿@model People_MVC_assignment_Lexicon.Models.ViewModels.CreatePersonViewModel
 <h3>Create</h3>
 
-<form asp-action="NewPerson" asp-controller="Person" method="post">
+<form asp-action="NewPerson" asp-controller="People" method="post">
     <div asp-validation-summary="ModelOnly"></div>
 
     <h4>First name</h4>
@@ -16,7 +16,7 @@
     <input asp-for="Age" type="number" />
     <span asp-validation-for="Age"></span>
 
-    <h4>City of birth</h4>
+    <h4>City</h4>
     <input asp-for="City" type="text" />
     <span asp-validation-for="City"></span>
 

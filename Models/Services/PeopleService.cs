@@ -26,14 +26,12 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
             Person person = new Person()
             {
-                Id = createPerson.Id,
                 FirstName = createPerson.FirstName,
                 LastName = createPerson.LastName,
                 Age = createPerson.Age,
-                FullName = createPerson.FullName,
                 Phone = createPerson.Phone,
             };
-            person = _personRepo.Create(person);
+            _personRepo.Create(person);
             return person;
         }
 
@@ -43,7 +41,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public List<Person> GetByName(string name)
         {
-            return _personRepo.GetByAny(name);
+            return _personRepo.GetByName(name);
         }
         public List<Person> GetAll()
         {
@@ -51,42 +49,41 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         }
         public List<Person> GetByAny(string search)
         {
-            List<Person> thePeople = _personRepo.GetAll();
-            List<Person> theFoundPeople = new List<Person>();
+            //List<Person> thePeople = _personRepo.GetAll();
+            //List<Person> theFoundPeople = new List<Person>();
 
-            if (search != null)
-            {
-                foreach (Person person in thePeople)
-                {
-                    if (
-                        search == person.Id.ToString()
-                        || search == person.FirstName
-                        || search == person.LastName
-                        || search == person.FullName
-                        || search == person.Age.ToString()
-                        || search == person.City.ToString()
-                        || search == person.Phone.ToString()
-                        )
-                    {
-                        theFoundPeople.Add(person);
-                    }
-                }
-                return theFoundPeople;
-            }
-            else
-            {
-                return null;
-            }
+            //if (search != null)
+            //{
+            //    foreach (Person person in thePeople)
+            //    {
+            //        if (
+            //            search == person.PersonId.ToString()
+            //            || search == person.FirstName
+            //            || search == person.LastName
+            //            || search == person.Age.ToString()
+            //            //|| search == person.City.Name.ToString()
+            //            || search == person.Phone.ToString()
+            //            )
+            //        {
+            //            theFoundPeople.Add(person);
+            //        }
+            //    }
+            //    return theFoundPeople;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            throw new NotImplementedException();
         }
 
         public bool Edit(int id, CreatePersonViewModel person)
         {
             foreach (Person temp in _personRepo.GetAll())
-                if (temp.Id == id)
+                if (temp.PersonId == id)
                 {
                     temp.FirstName = person.FirstName;
                     temp.LastName = person.LastName;
-                    temp.FullName = person.FullName;
                     temp.Age = person.Age;
                     temp.Phone = person.Phone;
                     return true;
@@ -97,9 +94,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Remove(int id)
         {
             foreach (Person temp in _personRepo.GetAll())
-                if (id == temp.Id)
+                if (id == temp.PersonId)
                 {
                     _personRepo.GetAll().Remove(temp);
+                    _personRepo.Delete(temp);
                     return true;
                 }
             return false;

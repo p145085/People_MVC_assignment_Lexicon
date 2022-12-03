@@ -9,6 +9,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
         List<Person> GetAll();
         Person GetById(int id);
         List<Person> GetByAny(string search);
+        List<Person> GetByName(string name);
         void Update(Person person);
         void Delete(Person person);
     }

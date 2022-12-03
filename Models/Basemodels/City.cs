@@ -1,9 +1,11 @@
-﻿namespace People_MVC_assignment_Lexicon.Models.Basemodels
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace People_MVC_assignment_Lexicon.Models.Basemodels
 {
     public class City
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int CityId { get; set; }
+        public string? Name { get; set; }
         public List<string> PeopleList
         {
             get
@@ -13,4 +15,5 @@
                 };
             }
         }
+    }
 }

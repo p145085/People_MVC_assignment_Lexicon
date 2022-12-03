@@ -22,7 +22,6 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
             Language language = new Language()
             {
-                Id = createLanguageViewModel.Id,
                 Name = createLanguageViewModel.Language,
             };
             language = _languageRepo.Create(language);
@@ -32,7 +31,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Edit(int id, CreateLanguageViewModel createLanguageViewModel)
         {
             foreach (Language temp in _languageRepo.GetAll())
-                if (temp.Id == id)
+                if (temp.LanguageId == id)
                 {
                     temp.Name = createLanguageViewModel.Language;
                     return true;
@@ -68,7 +67,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Remove(int id)
         {
             foreach (Language temp in _languageRepo.GetAll())
-                if (id == temp.Id)
+                if (id == temp.LanguageId)
                 {
                     _languageRepo.GetAll().Remove(temp);
                     return true;

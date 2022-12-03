@@ -1,11 +1,11 @@
-﻿@model List<Person>;
+﻿@model List<Person>
 <h3>ViewPeople</h3>
 
-<partial name="PeopleHeader" model="Model"></partial>
+<partial name="PeopleHeader"></partial>
 
 @foreach (Person person in Model)
 {
-    <partial name="PartialPeople" model="person"></partial>
+    <partial name="_PartialPeople" model="person"></partial>
 }
 
 <partial name="SearchPerson" model="Model"></partial>

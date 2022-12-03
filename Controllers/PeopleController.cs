@@ -9,6 +9,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
     public class PeopleController : Controller
     {
         IPeopleService _peopleService;
+        //private readonly ICityService _cityService;
 
         public PeopleController(IPeopleService peopleService)
         {
@@ -30,7 +31,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
-            if (person.Id == id)
+            if (person.PersonId == id)
             {
                 return View(person);
             }
@@ -50,8 +51,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
                 foreach (Person person in result)
                 {
                     if (person.FirstName == search 
-                        || person.LastName == search
-                        || person.FullName == search)
+                        || person.LastName == search)
                     {
                         return View(person);
                     }
@@ -64,25 +64,13 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonSearch(string search)
         {
-            List<Person> result = _peopleService.GetByAny(search);
+            List<Person>? result = _peopleService.GetByName(search);
             if (result == null)
             {
                 return RedirectToAction(nameof(ViewPeople));
             }
             if (result != null)
             {
-                foreach (Person person in result)
-                {
-                    if (person.FirstName == search
-                        || person.LastName == search
-                        || person.City.Name == search
-                        || person.Age.ToString() == search
-                        || person.Phone.ToString() == search
-                        )
-                    {
-                        return View(person);
-                    }
-                }
                 return View(result);
             }
             return View();

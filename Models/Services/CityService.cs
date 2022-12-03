@@ -21,7 +21,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
 
             City city = new City()
             {
-                Id = createCityViewModel.Id,
+                CityId = createCityViewModel.Id,
                 Name = createCityViewModel.City,
             };
             city = _cityRepo.Create(city);
@@ -31,7 +31,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Edit(int id, CreateCityViewModel createCityViewModel)
         {
             foreach (City temp in _cityRepo.GetAll())
-                if (temp.Id == id)
+                if (temp.CityId == id)
                 {
                     temp.Name = createCityViewModel.City;
                     return true;
@@ -69,7 +69,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 foreach (City city in theCities)
                 {
                     if (
-                        search == city.Id.ToString()
+                        search == city.CityId.ToString()
                         || search == city.Name
                         )
                     {
@@ -87,7 +87,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Remove(int id)
         {
             foreach (City temp in _cityRepo.GetAll())
-                if (id == temp.Id)
+                if (id == temp.CityId)
                 {
                     _cityRepo.GetAll().Remove(temp);
                     return true;
