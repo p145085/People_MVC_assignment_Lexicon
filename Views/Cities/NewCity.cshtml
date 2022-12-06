@@ -1,0 +1,14 @@
+﻿@model People_MVC_assignment_Lexicon.Models.ViewModels.CreateCityViewModel
+
+<h3>Create</h3>
+
+<form asp-action="NewCity" asp-controller="Cities" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Name</h4>
+    <input asp-for="City" type="text" />
+    <span asp-validation-for="City"></span>
+
+    <button type="submit" value="NewCity">Submit</button>
+</form>
+<a asp-action="ViewCities">Back</a>

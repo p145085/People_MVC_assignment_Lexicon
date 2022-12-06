@@ -54,7 +54,7 @@ namespace People_MVC_assignment_Lexicon
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{CityId?}");
+                pattern: "{controller=Home}/{action=Index}/{CityIdFromPerson?}");
 
             app.Run();
         }

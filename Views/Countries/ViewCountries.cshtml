@@ -1,0 +1,14 @@
+﻿@model List<Country>
+<h3>ViewCountry</h3>
+
+<partial name="CountryHeader"></partial>
+
+@foreach (Country country in Model)
+{
+    <partial name="_PartialCountries" model="country"></partial>
+}
+
+<partial name="SearchCountries" model="Model"></partial>
+
+<partial name="DeleteCountries" model="Model"></partial>
+

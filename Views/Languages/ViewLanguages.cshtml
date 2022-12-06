@@ -1,0 +1,14 @@
+﻿@model List<Language>
+<h3>ViewLanguage</h3>
+
+<partial name="LanguageHeader"></partial>
+
+@foreach (Language language in Model)
+{
+    <partial name="_PartialLanguages" model="language"></partial>
+}
+
+<partial name="SearchLanguage" model="Model"></partial>
+
+<partial name="DeleteLanguage" model="Model"></partial>
+

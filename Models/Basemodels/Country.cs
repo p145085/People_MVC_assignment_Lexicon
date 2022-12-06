@@ -4,6 +4,7 @@
     {
         public int CountryId { get; set; }
         public string? Name { get; set; }
+        public List<City>? Cities { get; set; }
         public List<string> CountryList
         {
             get

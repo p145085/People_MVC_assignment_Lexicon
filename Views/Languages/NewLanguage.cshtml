@@ -1,0 +1,14 @@
+﻿@model People_MVC_assignment_Lexicon.Models.ViewModels.CreateLanguageViewModel
+
+<h3>Create</h3>
+
+<form asp-action="NewLanguage" asp-controller="Languages" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Name</h4>
+    <input asp-for="Language" type="text" />
+    <span asp-validation-for="Language"></span>
+
+    <button type="submit" value="NewLanguage">Submit</button>
+</form>
+<a asp-action="ViewLanguages">Back</a>

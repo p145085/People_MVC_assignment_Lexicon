@@ -41,7 +41,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
             // .SELECT och .WHERE fungerar inte.
             //return _context.Languages
             //    .Select(
-            //    x => x.CityId == id
+            //    x => x.CityIdFromPerson == id
             //    );
             return _context.Countries.SingleOrDefault(x => x.CountryId == id);
 

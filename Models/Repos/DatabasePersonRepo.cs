@@ -52,7 +52,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
             return _context.People.SingleOrDefault(x => x.PersonId == id);
 
                 //.Where(
-                //x => x.CityId == id
+                //x => x.CityIdFromPerson == id
                 //);
         }
 

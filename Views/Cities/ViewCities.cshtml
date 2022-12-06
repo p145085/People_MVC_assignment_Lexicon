@@ -1,0 +1,14 @@
+﻿@model List<City>
+<h3>ViewCity</h3>
+
+<partial name="CityHeader"></partial>
+
+@foreach (City city in Model)
+{
+    <partial name="_PartialCities" model="city"></partial>
+}
+
+<partial name="SearchCities" model="Model"></partial>
+
+<partial name="DeleteCities" model="Model"></partial>
+
