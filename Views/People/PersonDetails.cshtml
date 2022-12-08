@@ -17,7 +17,12 @@
     <div class="col-1">@Model.FirstName</div>
     <div class="col-1">@Model.LastName</div>
     <div class="col-1">@Model.Age</div>
-    <div class="col-1">@Model.CityFromPerson</div>
+    <div class="col-1">
+        @if (Model.CityFromPerson?.Name != null)
+        {
+            @Model.CityFromPerson.Name
+        }
+    </div>
     <div class="col-1">@Model.Phone</div>
 </div>
 

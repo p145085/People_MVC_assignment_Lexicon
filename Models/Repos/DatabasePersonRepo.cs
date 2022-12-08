@@ -41,7 +41,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
 
         public List<Person>? GetByCity(string city)
         {
-            return _context.People
+            return _context.People.Include(p => p.CityFromPerson)
                 .Where(
                 x => x.CityFromPerson.Name == city
                 ).ToList();
@@ -57,7 +57,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
 
         public Person? GetById(int id)
         {
-            return _context.People.SingleOrDefault(x => x.PersonId == id);
+            return _context.People.Include(p => p.CityFromPerson).SingleOrDefault(x => x.PersonId == id);
 
                 //.Where(
                 //x => x.CityIdFromPerson == id
@@ -66,12 +66,14 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
 
         public List<Person>? GetByName(string name)
         {
-            return _context.People
+            return _context.People.Include(p => p.CityFromPerson)
                 .Where(
                 x => 
                 x.FirstName == name
                 ||
                 x.LastName == name
+                ||
+                x.FirstName + x.LastName == name
                 ).ToList();
         }
 

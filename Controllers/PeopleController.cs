@@ -10,12 +10,12 @@ namespace People_MVC_assignment_Lexicon.Controllers
     {
         IPeopleService _peopleService;
         //private readonly ICityService _cityService;
-        ICityRepo _cityRepo;
+        //ICityRepo _cityRepo;
 
-        public PeopleController(IPeopleService peopleService, ICityRepo cityRepo)
+        public PeopleController(IPeopleService peopleService/*, ICityRepo cityRepo*/)
         {
             _peopleService = peopleService;
-            _cityRepo = cityRepo;
+            //_cityRepo = cityRepo;
         }
 
         [HttpGet]
@@ -50,55 +50,40 @@ namespace People_MVC_assignment_Lexicon.Controllers
             }
             if (result != null)
             {
-                foreach (Person person in result)
-                {
-                    if (person.FirstName == search 
-                        || person.LastName == search)
-                    {
-                        return View(person);
-                    }
-                }
                 return View(result);
             }
             return View();
         }
 
-        [HttpGet]
-        public IActionResult PersonSearch(string search)
-        {
-            List<Person>? result = _peopleService.GetByName(search);
-            if (result == null)
-            {
-                return RedirectToAction(nameof(ViewPeople));
-            }
-            if (result != null)
-            {
-                return View(result);
-            }
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult PersonSearch(string search)
+        //{
+        //    List<Person>? result = _peopleService.GetByName(search);
+        //    if (result == null)
+        //    {
+        //        return RedirectToAction(nameof(ViewPeople));
+        //    }
+        //    if (result != null)
+        //    {
+        //        return View(result);
+        //    }
+        //    return View();
+        //}
 
-        [HttpGet]
-        public IActionResult PersonSearchByCity(string search)
-        {
-            List<Person> result = _peopleService.GetByAny(search);
-            if (result == null)
-            {
-                return RedirectToAction(nameof(ViewPeople));
-            }
-            if (result != null)
-            {
-                foreach (Person person in result)
-                {
-                    if (person.CityFromPerson.Name == search)
-                    {
-                        return View(person);
-                    }
-                }
-                return View(result);
-            }
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult PersonSearchByAny(string search)
+        //{
+        //    List<Person> result = _peopleService.GetByAny(search);
+        //    if (result == null)
+        //    {
+        //        return RedirectToAction(nameof(ViewPeople));
+        //    }
+        //    if (result != null)
+        //    {
+        //        return View(result);
+        //    }
+        //    return View();
+        //}
 
         [HttpGet]
         public IActionResult NewPerson()
