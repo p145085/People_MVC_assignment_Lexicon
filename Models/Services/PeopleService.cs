@@ -10,11 +10,11 @@ namespace People_MVC_assignment_Lexicon.Models.Services
     public class PeopleService : IPeopleService
     {
         IPeopleRepo _personRepo;
-        ICityRepo _cityRepo;
-        public PeopleService(IPeopleRepo personRepo, ICityRepo cityRepo)
+        //ICityRepo _cityRepo;
+        public PeopleService(IPeopleRepo personRepo/*, ICityRepo cityRepo*/)
         {
             _personRepo = personRepo;
-            _cityRepo = cityRepo;
+            //_cityRepo = cityRepo;
         }
 
         public Person Create(CreatePersonViewModel createPerson)
@@ -26,10 +26,10 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 throw new ArgumentException("No whitespace allowed."); 
             };
 
-            if (_cityRepo.GetByCityName(createPerson.CityNameFromViewModel) == null)
-            {
-                throw new ArgumentException("Create this city first.");
-            }
+            //if (_cityRepo.GetByCityName(createPerson.CityNameFromViewModel) == null)
+            //{
+            //    throw new ArgumentException("Create this city first.");
+            //}
 
             Person person = new Person()
             {
@@ -37,7 +37,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 LastName = createPerson.LastName,
                 Age = createPerson.Age,
                 Phone = createPerson.Phone,
-                CityFromPerson = _cityRepo.GetByCityName(createPerson.CityNameFromViewModel),
+                //CityFromPerson = _cityRepo.GetByCityName(createPerson.CityNameFromViewModel),
             };
             _personRepo.Create(person);
             return person;
@@ -94,6 +94,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                     temp.LastName = person.LastName;
                     temp.Age = person.Age;
                     temp.Phone = person.Phone;
+                    temp.CityFromPerson.Name = person.CityNameFromViewModel;
                     return true;
                 }
             return false;
@@ -102,7 +103,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
         public bool Remove(int id)
         {
             foreach (Person temp in _personRepo.GetAll())
-                if (id == temp.PersonId)
+                if (temp.PersonId == id)
                 {
                     _personRepo.GetAll().Remove(temp);
                     _personRepo.Delete(temp);
