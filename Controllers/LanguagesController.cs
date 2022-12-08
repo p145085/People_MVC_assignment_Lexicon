@@ -5,52 +5,52 @@ using People_MVC_assignment_Lexicon.Models.ViewModels;
 
 namespace People_MVC_assignment_Lexicon.Controllers
 {
-    public class CountriesController : Controller
+    public class LanguagesController : Controller
     {
-        ICountryService _countryService;
+        ILanguageService _languageService;
 
-        public CountriesController(ICountryService countryService)
+        public LanguagesController(ILanguageService languageService)
         {
-            _countryService = countryService;
+            _languageService = languageService;
         }
 
         [HttpGet]
-        public IActionResult ViewCountries()
+        public IActionResult ViewLanguages()
         {
-            List<Country> all = _countryService.GetAll();
+            List<Language> all = _languageService.GetAll();
             return View(all);
         }
 
         [HttpGet]
-        public IActionResult CountryDetails(int id)
+        public IActionResult LanguageDetails(int id)
         {
-            Country country = _countryService.FindById(id);
-            if (country == null)
+            Language language = _languageService.FindById(id);
+            if (language == null)
             {
-                return RedirectToAction(nameof(ViewCountries));
+                return RedirectToAction(nameof(ViewLanguages));
             }
-            if (country.CountryId == id)
+            if (language.LanguageId == id)
             {
-                return View(country);
+                return View(language);
             }
             return View();
         }
 
         [HttpGet]
-        public IActionResult CountrySearchByName(string search)
+        public IActionResult LanguageSearchByName(string search)
         {
-            List<Country> result = _countryService.FindByName(search);
+            List<Language> result = _languageService.FindByName(search);
             if (result == null)
             {
-                return RedirectToAction(nameof(ViewCountries));
+                return RedirectToAction(nameof(ViewLanguages));
             }
             if (result != null)
             {
-                foreach (Country country in result)
+                foreach (Language language in result)
                 {
-                    if (country.Name == search)
+                    if (language.Name == search)
                     {
-                        return View(country);
+                        return View(language);
                     }
                 }
                 return View(result);
@@ -59,20 +59,20 @@ namespace People_MVC_assignment_Lexicon.Controllers
         }
 
         [HttpGet]
-        public IActionResult CountrySearch(string search)
+        public IActionResult LanguageSearch(string search)
         {
-            List<Country> result = _countryService.GetByAny(search);
+            List<Language> result = _languageService.GetByAny(search);
             if (result == null)
             {
-                return RedirectToAction(nameof(ViewCountries));
+                return RedirectToAction(nameof(ViewLanguages));
             }
             if (result != null)
             {
-                foreach (Country country in result)
+                foreach (Language language in result)
                 {
-                    if (country.Name == search)
+                    if (language.Name == search)
                     {
-                        return View(country);
+                        return View(language);
                     }
                 }
                 return View(result);
@@ -103,36 +103,36 @@ namespace People_MVC_assignment_Lexicon.Controllers
         //}
 
         [HttpGet]
-        public IActionResult NewCountry()
+        public IActionResult NewLanguage()
         {
-            return View(new CreateCountryViewModel());
+            return View(new CreateLanguageViewModel());
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult NewCountry(CreateCountryViewModel ccvm)
+        public IActionResult NewLanguage(CreateLanguageViewModel clvm)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _countryService.Create(ccvm);
+                    _languageService.Create(clvm);
                 }
                 catch (ArgumentException exception)
                 {
                     ModelState.AddModelError("error", exception.Message);
-                    return View(ccvm);
+                    return View(clvm);
                 }
-                return RedirectToAction(nameof(ViewCountries));
+                return RedirectToAction(nameof(ViewLanguages));
             }
-            return View(ccvm);
+            return View(clvm);
         }
 
         [HttpGet]
-        public IActionResult DeleteCountry(int delete)
+        public IActionResult DeleteLanguage(int delete)
         {
-            _countryService.Remove(delete);
-            return RedirectToAction(nameof(ViewCountries));
+            _languageService.Remove(delete);
+            return RedirectToAction(nameof(ViewLanguages));
         }
     }
 }

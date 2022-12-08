@@ -14,7 +14,7 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //    }
     //    //    public Person Create(Person person)
     //    //    {
-    //    //        person.CityId = ++idCounter;
+    //    //        person.CityIdFromPerson = ++idCounter;
     //    //        personList.Add(person);
     //    //        return person;
     //    //    }
@@ -34,7 +34,7 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //        Person person = null;
     //    //        foreach (Person aPerson in personList)
     //    //        {
-    //    //            if (aPerson.CityId == id)
+    //    //            if (aPerson.CityIdFromPerson == id)
     //    //            {
     //    //                person = aPerson;
     //    //                break;
@@ -55,12 +55,12 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //        }
     //    //        return person;
     //    //    }
-    //    //    public Person GetByCity(string city)
+    //    //    public Person GetByCityName(string city)
     //    //    {
     //    //        Person person = null;
     //    //        foreach (Person aPerson in personList)
     //    //        {
-    //    //            if (aPerson.City == city)
+    //    //            if (aPerson.CityNameFromViewModel == city)
     //    //            {
     //    //                person = aPerson;
     //    //                break;
@@ -71,13 +71,13 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
 
     //    //    public void Update(Person person)
     //    //    {
-    //    //        Person originalPerson = GetById(person.CityId);
+    //    //        Person originalPerson = GetById(person.CityIdFromPerson);
     //    //        if (originalPerson != null)
     //    //        {
     //    //            originalPerson.FirstName = person.FirstName;
     //    //            originalPerson.LastName = person.LastName;
     //    //            originalPerson.Age = person.Age;
-    //    //            originalPerson.City = person.City;
+    //    //            originalPerson.CityNameFromViewModel = person.CityNameFromViewModel;
     //    //            originalPerson.Phone = person.Phone;
     //    //        }
     //    //    }

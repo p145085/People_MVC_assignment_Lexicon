@@ -1,0 +1,16 @@
+﻿@model Language
+
+<h1>Details page</h1>
+
+<div class="row">
+    <div class="col-1"><b>ID</b></div>
+    <div class="col-1"><b>Name</b></div>
+    <div class="col-1"><b>Details</b></div>
+</div>
+
+<div class="row">
+    <div class="col-1">@Model.LanguageId</div>
+    <div class="col-1">@Model.Name</div>
+</div>
+
+<a asp-action="ViewLanguage">Back</a>

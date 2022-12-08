@@ -1,0 +1,14 @@
+﻿@model People_MVC_assignment_Lexicon.Models.ViewModels.CreateCountryViewModel
+
+<h3>Create</h3>
+
+<form asp-action="NewCountry" asp-controller="Countries" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Name</h4>
+    <input asp-for="Country" type="text" />
+    <span asp-validation-for="Country"></span>
+
+    <button type="submit" value="NewCountry">Submit</button>
+</form>
+<a asp-action="ViewCountries">Back</a>

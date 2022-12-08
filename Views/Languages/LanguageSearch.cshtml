@@ -1,0 +1,19 @@
+﻿@model List<Language>
+
+<h1>Details page</h1>
+
+<div class="row">
+    <div class="col-1"><b>ID</b></div>
+    <div class="col-1"><b>Name</b></div>
+    <div class="col-1"><b>Details</b></div>
+</div>
+
+@foreach (Language language in Model)
+{
+    <div class="row">
+        <div class="col-1">@language.LanguageId</div>
+        <div class="col-1">@language.Name</div>
+    </div>
+}
+
+<a asp-action="ViewLanguages">Back</a>

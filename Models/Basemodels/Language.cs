@@ -4,6 +4,7 @@
     {
         public int LanguageId { get; set; }
         public string? Name { get; set; }
+        public List<Person>? People { get; set; }
         public List<string> PeopleList
         {
             get

@@ -1,0 +1,7 @@
+﻿@model Language
+
+<div class="row">
+    <div class="col-1">@Model.LanguageId</div>
+    <div class="col-1">@Model.Name</div>
+    <div class="col-1">@Html.ActionLink("Details","LanguageDetails","Languages", new {id = Model.LanguageId})</div>
+</div>

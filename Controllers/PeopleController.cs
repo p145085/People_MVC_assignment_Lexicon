@@ -10,10 +10,12 @@ namespace People_MVC_assignment_Lexicon.Controllers
     {
         IPeopleService _peopleService;
         //private readonly ICityService _cityService;
+        ICityRepo _cityRepo;
 
-        public PeopleController(IPeopleService peopleService)
+        public PeopleController(IPeopleService peopleService, ICityRepo cityRepo)
         {
             _peopleService = peopleService;
+            _cityRepo = cityRepo;
         }
 
         [HttpGet]
@@ -88,7 +90,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
             {
                 foreach (Person person in result)
                 {
-                    if (person.City.Name == search)
+                    if (person.CityFromPerson.Name == search)
                     {
                         return View(person);
                     }
@@ -112,6 +114,10 @@ namespace People_MVC_assignment_Lexicon.Controllers
             {
                 try
                 {
+                    //if (_cityRepo.GetByCityName(person.CityNameFromViewModel) == null)
+                    //{
+                    //    throw new ArgumentException("Create this city first.");
+                    //}
                     _peopleService.Create(person);
                 }
                 catch (ArgumentException exception)

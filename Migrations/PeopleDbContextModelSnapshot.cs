@@ -22,6 +22,21 @@ namespace People_MVC_assignment_Lexicon.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("LanguagePerson", b =>
+                {
+                    b.Property<int>("LanguagesLanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PeoplePersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LanguagesLanguageId", "PeoplePersonId");
+
+                    b.HasIndex("PeoplePersonId");
+
+                    b.ToTable("LanguagePerson");
+                });
+
             modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.City", b =>
                 {
                     b.Property<int>("CityId")
@@ -30,11 +45,18 @@ namespace People_MVC_assignment_Lexicon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
 
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountryIdFromPerson")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CityId");
+
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
                 });
@@ -48,7 +70,6 @@ namespace People_MVC_assignment_Lexicon.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CountryId");
@@ -65,15 +86,9 @@ namespace People_MVC_assignment_Lexicon.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LanguageId"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
                     b.HasKey("LanguageId");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Languages");
                 });
@@ -89,13 +104,13 @@ namespace People_MVC_assignment_Lexicon.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CityId")
+                    b.Property<int?>("CityFromPersonCityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CityIdFromPerson")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -106,30 +121,52 @@ namespace People_MVC_assignment_Lexicon.Migrations
 
                     b.HasKey("PersonId");
 
-                    b.HasIndex("CityId");
+                    b.HasIndex("CityFromPersonCityId");
 
                     b.ToTable("People");
                 });
 
-            modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.Language", b =>
+            modelBuilder.Entity("LanguagePerson", b =>
                 {
-                    b.HasOne("People_MVC_assignment_Lexicon.Models.Basemodels.Person", null)
-                        .WithMany("Languages")
-                        .HasForeignKey("PersonId");
-                });
-
-            modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.Person", b =>
-                {
-                    b.HasOne("People_MVC_assignment_Lexicon.Models.Basemodels.City", "City")
+                    b.HasOne("People_MVC_assignment_Lexicon.Models.Basemodels.Language", null)
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("LanguagesLanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("City");
+                    b.HasOne("People_MVC_assignment_Lexicon.Models.Basemodels.Person", null)
+                        .WithMany()
+                        .HasForeignKey("PeoplePersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.City", b =>
+                {
+                    b.HasOne("People_MVC_assignment_Lexicon.Models.Basemodels.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId");
+
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.Person", b =>
                 {
-                    b.Navigation("Languages");
+                    b.HasOne("People_MVC_assignment_Lexicon.Models.Basemodels.City", "CityFromPerson")
+                        .WithMany("People")
+                        .HasForeignKey("CityFromPersonCityId");
+
+                    b.Navigation("CityFromPerson");
+                });
+
+            modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.City", b =>
+                {
+                    b.Navigation("People");
+                });
+
+            modelBuilder.Entity("People_MVC_assignment_Lexicon.Models.Basemodels.Country", b =>
+                {
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

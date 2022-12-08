@@ -1,0 +1,8 @@
+﻿@model List<Language>
+<h3>Delete</h3>
+
+<form method="get" action="@Url.Action("DeleteLanguage", "Languages")">
+    <label for="delete">Delete</label>
+    <input type="number" name="delete" id="delete" />
+    <button type="submit">Execute deletion</button>
+</form>

@@ -37,44 +37,15 @@ namespace People_MVC_assignment_Lexicon.Controllers
         }
 
         [HttpGet]
-        public IActionResult CitySearchByName(string search)
-        {
-            List<City> result = _citiesService.FindByCity(search);
-            if (result == null)
-            {
-                return RedirectToAction(nameof(ViewCities));
-            }
-            if (result != null)
-            {
-                foreach (City city in result)
-                {
-                    if (city.Name == search)
-                    {
-                        return View(city);
-                    }
-                }
-                return View(result);
-            }
-            return View();
-        }
-
-        [HttpGet]
         public IActionResult CitySearch(string search)
         {
-            List<City> result = _citiesService.GetByAny(search);
+            City result = _citiesService.GetByCity(search);
             if (result == null)
             {
                 return RedirectToAction(nameof(ViewCities));
             }
             if (result != null)
-            {
-                foreach (City city in result)
-                {
-                    if (city.Name == search)
-                    {
-                        return View(city);
-                    }
-                }
+            {    
                 return View(result);
             }
             return View();
@@ -92,7 +63,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
         //    {
         //        foreach (Name country in result)
         //        {
-        //            if (country.City.Name == search)
+        //            if (country.CityNameFromViewModel.Name == search)
         //            {
         //                return View(person);
         //            }
