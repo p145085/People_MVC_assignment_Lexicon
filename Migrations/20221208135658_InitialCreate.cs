@@ -41,7 +41,8 @@ namespace People_MVC_assignment_Lexicon.Migrations
                     CityId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CountryId = table.Column<int>(type: "int", nullable: false)
+                    CountryIdFromPerson = table.Column<int>(type: "int", nullable: false),
+                    CountryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,8 +51,7 @@ namespace People_MVC_assignment_Lexicon.Migrations
                         name: "FK_Cities_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
-                        principalColumn: "CountryId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CountryId");
                 });
 
             migrationBuilder.CreateTable(
@@ -64,17 +64,17 @@ namespace People_MVC_assignment_Lexicon.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CityId = table.Column<int>(type: "int", nullable: false)
+                    CityIdFromPerson = table.Column<int>(type: "int", nullable: false),
+                    CityFromPersonCityId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_People", x => x.PersonId);
                     table.ForeignKey(
-                        name: "FK_People_Cities_CityId",
-                        column: x => x.CityId,
+                        name: "FK_People_Cities_CityFromPersonCityId",
+                        column: x => x.CityFromPersonCityId,
                         principalTable: "Cities",
-                        principalColumn: "CityIdFromPerson",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CityId");
                 });
 
             migrationBuilder.CreateTable(
@@ -112,9 +112,9 @@ namespace People_MVC_assignment_Lexicon.Migrations
                 column: "PeoplePersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_People_CityId",
+                name: "IX_People_CityFromPersonCityId",
                 table: "People",
-                column: "CityIdFromPerson");
+                column: "CityFromPersonCityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

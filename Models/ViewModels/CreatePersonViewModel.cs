@@ -10,7 +10,7 @@ namespace People_MVC_assignment_Lexicon.Models.ViewModels
         public int Id { get; set; }
         public int Age { get; set; }
         public int CityId { get; set; }
-        public List<City>? Cities { get; set; }
+        public string? CityNameFromViewModel { get; set; }
         public string? Phone { get; set; }
     }
 }

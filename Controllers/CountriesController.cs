@@ -92,7 +92,7 @@ namespace People_MVC_assignment_Lexicon.Controllers
         //    {
         //        foreach (Name country in result)
         //        {
-        //            if (country.City.Name == search)
+        //            if (country.CityNameFromViewModel.Name == search)
         //            {
         //                return View(person);
         //            }

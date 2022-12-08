@@ -26,7 +26,7 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
 
         public List<Person>? GetAll()
         {
-            return _context.People.ToList();
+            return _context.People.Include(p => p.CityFromPerson).ToList();
         }
 
         public List<Person>? GetByAny(string search)
@@ -43,9 +43,17 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
         {
             return _context.People
                 .Where(
-                x => x.City.Name == city
+                x => x.CityFromPerson.Name == city
                 ).ToList();
         }
+
+        //public List<CityNameFromViewModel>? GetByCityFromCities(string city)
+        //{
+        //    return _context.Cities
+        //        .Where(
+        //        x => x.Name == city
+        //        ).ToList();
+        //}
 
         public Person? GetById(int id)
         {

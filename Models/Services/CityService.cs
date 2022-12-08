@@ -39,9 +39,9 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             return false;
         }
 
-        public List<City> FindByCity(string city)
+        public City GetByCity(string city)
         {
-            return _cityRepo.GetByCity(city);
+            return _cityRepo.GetByCityName(city);
         }
 
         public City FindById(int id)
@@ -49,40 +49,40 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             return _cityRepo.GetById(id);
         }
 
-        public List<City> FindByName(string name)
-        {
-            return _cityRepo.GetByName(name);
-        }
+        //public List<City> FindByName(string name)
+        //{
+        //    return _cityRepo.GetByName(name);
+        //}
 
         public List<City> GetAll()
         {
             return _cityRepo.GetAll();
         }
 
-        public List<City> GetByAny(string search)
-        {
-            List<City> theCities = _cityRepo.GetAll();
-            List<City> theFoundCities = new List<City>();
+        //public List<City> GetByAny(string search)
+        //{
+        //    List<City> theCities = _cityRepo.GetAll();
+        //    List<City> theFoundCities = new List<City>();
 
-            if (search != null)
-            {
-                foreach (City city in theCities)
-                {
-                    if (
-                        search == city.CityId.ToString()
-                        || search == city.Name
-                        )
-                    {
-                        theFoundCities.Add(city);
-                    }
-                }
-                return theFoundCities;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //    if (search != null)
+        //    {
+        //        foreach (City city in theCities)
+        //        {
+        //            if (
+        //                search == city.CityId.ToString()
+        //                || search == city.Name
+        //                )
+        //            {
+        //                theFoundCities.Add(city);
+        //            }
+        //        }
+        //        return theFoundCities;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         public bool Remove(int id)
         {

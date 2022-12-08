@@ -55,12 +55,12 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //        }
     //    //        return person;
     //    //    }
-    //    //    public Person GetByCity(string city)
+    //    //    public Person GetByCityName(string city)
     //    //    {
     //    //        Person person = null;
     //    //        foreach (Person aPerson in personList)
     //    //        {
-    //    //            if (aPerson.City == city)
+    //    //            if (aPerson.CityNameFromViewModel == city)
     //    //            {
     //    //                person = aPerson;
     //    //                break;
@@ -77,7 +77,7 @@ namespace People_MVC_assignment_Lexicon.DEPRECATED
     //    //            originalPerson.FirstName = person.FirstName;
     //    //            originalPerson.LastName = person.LastName;
     //    //            originalPerson.Age = person.Age;
-    //    //            originalPerson.City = person.City;
+    //    //            originalPerson.CityNameFromViewModel = person.CityNameFromViewModel;
     //    //            originalPerson.Phone = person.Phone;
     //    //        }
     //    //    }

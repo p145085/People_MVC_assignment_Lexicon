@@ -10,9 +10,11 @@ namespace People_MVC_assignment_Lexicon.Models.Services
     public class PeopleService : IPeopleService
     {
         IPeopleRepo _personRepo;
-        public PeopleService(IPeopleRepo personRepo)
+        ICityRepo _cityRepo;
+        public PeopleService(IPeopleRepo personRepo, ICityRepo cityRepo)
         {
             _personRepo = personRepo;
+            _cityRepo = cityRepo;
         }
 
         public Person Create(CreatePersonViewModel createPerson)
@@ -22,6 +24,11 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 )
             { 
                 throw new ArgumentException("No whitespace allowed."); 
+            };
+
+            if (_cityRepo.GetByCityName(createPerson.CityNameFromViewModel) == null)
+            {
+                throw new ArgumentException("Create this city first.");
             }
 
             Person person = new Person()
@@ -30,6 +37,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
                 LastName = createPerson.LastName,
                 Age = createPerson.Age,
                 Phone = createPerson.Phone,
+                CityFromPerson = _cityRepo.GetByCityName(createPerson.CityNameFromViewModel),
             };
             _personRepo.Create(person);
             return person;
@@ -61,7 +69,7 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             //            || search == person.FirstName
             //            || search == person.LastName
             //            || search == person.Age.ToString()
-            //            //|| search == person.City.Name.ToString()
+            //            //|| search == person.CityNameFromViewModel.Name.ToString()
             //            || search == person.Phone.ToString()
             //            )
             //        {

@@ -9,8 +9,8 @@ namespace People_MVC_assignment_Lexicon.Models.Basemodels
         public string? LastName { get; set; }
         public int Age { get; set; }
         public string? Phone { get; set; }
-        public City? City { get; set; }
         public int CityIdFromPerson { get; set; }
+        public City? CityFromPerson { get; set; }
         public List<Language>? Languages { get; set; }
     }
 }

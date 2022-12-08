@@ -1,0 +1,8 @@
+﻿@model List<Language>
+<h3>Search</h3>
+
+<form method="get" action="@Url.Action("LanguageSearch", "Languages")">
+    <label for="search">Search</label>
+    <input type="search" name="search" id="search" />
+    <button type="submit">Perform search</button>
+</form>

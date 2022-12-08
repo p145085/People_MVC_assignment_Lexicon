@@ -28,14 +28,14 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
             return _context.Cities.ToList();
         }
 
-        public List<City> GetByAny(string search)
-        {
-            //return _context.Cities
-            //    .Where(
-            //    x => x.Name == search
-            //    ).ToList();
-            throw new NotImplementedException();
-        }
+        //public List<City> GetByAny(string search)
+        //{
+        //    //return _context.Cities
+        //    //    .Where(
+        //    //    x => x.Name == search
+        //    //    ).ToList();
+        //    throw new NotImplementedException();
+        //}
 
         public City GetById(int id)
         {
@@ -47,20 +47,24 @@ namespace People_MVC_assignment_Lexicon.Models.Repos
             return _context.Cities.SingleOrDefault(x => x.CityId == id);
         }
 
-        public List<City> GetByCity(string city)
+        public City GetByCityName(string city)
         {
-            return _context.Cities
-                .Where(
+            if (_context.Cities
+                .SingleOrDefault(
                 x => x.Name.Equals(city)
-                ).ToList();
-        }
-
-        public List<City> GetByName(string name)
-        {
-            return _context.Cities
-                .Where(
-                x => x.Name.Equals(name)
-                ).ToList();
+                ) 
+                == null
+                )
+            {
+                throw new ArgumentException("City does not exist.");
+            }
+            else
+            {
+                return _context.Cities
+                .SingleOrDefault(
+                x => x.Name.Equals(city)
+                );
+            }
         }
 
         public void Update(City city)
