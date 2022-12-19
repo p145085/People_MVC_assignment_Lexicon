@@ -28,30 +28,79 @@ namespace People_MVC_assignment_Lexicon.Controllers
         [HttpGet]
         public IActionResult PersonDetails(int id)
         {
-            Person person = _peopleService.GetById(id);
-            if (person == null)
+            List<Person> person = _peopleService.GetById(id);
+            foreach(Person p in person)
             {
-                return RedirectToAction(nameof(ViewPeople));
-            }
-            if (person.PersonId == id)
-            {
-                return View(person);
+                if (p == null)
+                {
+                    return RedirectToAction(nameof(ViewPeople));
+                }
+                if (p.PersonId == id)
+                {
+                    return View(person);
+                }
             }
             return View();
         }
 
         [HttpGet]
-        public IActionResult PersonSearchByName(string search)
+        public IActionResult PersonSearch(string search) // Search By Name.
         {
-            List<Person> result = _peopleService.GetByName(search);
-            if (result == null)
+            try // Try GetByName first.
             {
-                return RedirectToAction(nameof(ViewPeople));
-            }
-            if (result != null)
+                List<Person> result = _peopleService.GetByName(search);
+                if (result.Count == 0)
+                {
+                    try // Try GetById second.
+                    {
+                        int idTest = Int32.Parse(search);
+                        List<Person> idResult = _peopleService.GetById(idTest);
+
+                        if (idResult == null)
+                        {
+                            try
+                            {
+                                List<Person> cityResult = _peopleService.GetByCity(search);
+                                if (cityResult.Count != 0)
+                                {
+                                    return RedirectToAction(nameof(ViewPeople));
+                                }
+                                if (cityResult.Count > 0)
+                                {
+                                    return View(cityResult);
+                                }
+                            } catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                            return RedirectToAction(nameof(ViewPeople));
+                        }
+                        if (idResult != null)
+                        {
+                            foreach (Person p in idResult)
+                            {
+                                if (p.PersonId == idTest)
+                                {
+                                    return View(idResult);
+                                }
+                            }
+                        }
+
+                    } catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    return RedirectToAction(nameof(ViewPeople));
+                }
+                if (result.Count != 0)
+                {
+                    return View(result);
+                }
+            } catch (Exception ex)
             {
-                return View(result);
+                Console.WriteLine(ex.Message);
             }
+            
             return View();
         }
 

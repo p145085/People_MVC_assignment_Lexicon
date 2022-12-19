@@ -1,0 +1,44 @@
+﻿@model CreateAccountViewModel
+<h3>Register</h3>
+
+<form asp-action="RegisterUser" asp-controller="Account" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <h4>Username</h4>
+    <input asp-for="NickName" type="text" />
+    <span asp-validation-for="NickName"></span>
+
+    <h4>First Name</h4>
+    <input asp-for="FirstName" type="text" />
+    <span asp-validation-for="FirstName"></span>
+
+    <h4>Last Name</h4>
+    <input asp-for="LastName" type="text" />
+    <span asp-validation-for="LastName"></span>
+
+    <h4>Birth Date</h4>
+    <input asp-for="BirthDate" type="date" />
+    <span asp-validation-for="BirthDate"></span>
+
+    <h4>Password</h4>
+    <input asp-for="Password" type="password" />
+    <span asp-validation-for="Password"></span>
+
+    <h4>Confirm Password</h4>
+    <input asp-for="PasswordConfirm" type="password" />
+    <span asp-validation-for="PasswordConfirm"></span>
+
+    <h4>Email</h4>
+    <input asp-for="Email" type="email" />
+    <span asp-validation-for="Email"></span>
+
+    <button type="submit" value="RegisterUser">Submit</button>
+</form>
+@{
+    if (ViewBag.Message != null)
+    {
+        <div>
+            @ViewBag.Message
+        </div>
+    }
+}
