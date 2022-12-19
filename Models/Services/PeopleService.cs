@@ -22,8 +22,8 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             if (string.IsNullOrWhiteSpace(createPerson.FirstName) ||
                 string.IsNullOrWhiteSpace(createPerson.LastName)
                 )
-            { 
-                throw new ArgumentException("No whitespace allowed."); 
+            {
+                throw new ArgumentException("No whitespace allowed.");
             };
 
             //if (_cityRepo.GetByCityName(createPerson.CityNameFromViewModel) == null)
@@ -43,13 +43,17 @@ namespace People_MVC_assignment_Lexicon.Models.Services
             return person;
         }
 
-        public Person GetById(int id)
+        public List<Person> GetById(int id)
         {
             return _personRepo.GetById(id);
         }
         public List<Person> GetByName(string name)
         {
             return _personRepo.GetByName(name);
+        }
+        public List<Person>? GetByCity(string search)
+        {
+            return _personRepo.GetByCity(search);
         }
         public List<Person> GetAll()
         {
